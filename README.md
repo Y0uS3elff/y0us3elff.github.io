@@ -55,4 +55,4 @@ Ouvrir [http://localhost:3000](http://localhost:3000) pour voir le portfolio.
 
 ## 📝 License
 
-© Léo Clerc 2024. All rights reserved
+© Léo Clerc 2026. All rights reserved

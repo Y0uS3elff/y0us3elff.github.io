@@ -77,7 +77,7 @@ const Footer = () => {
                 </div>
 
                 <div className="mb-[20px] text-[15px] text-center">
-                    &copy; Léo Clerc 2024. All rights reserved
+                    &copy; Léo Clerc 2026. All rights reserved
                 </div>
             </div>
         </div>
