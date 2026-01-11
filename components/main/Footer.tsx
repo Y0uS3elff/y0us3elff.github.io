@@ -70,7 +70,7 @@ const Footer = () => {
                         </p>
                         <p className="flex flex-row items-center my-[15px] cursor-pointer">
                             <span className="text-[15px] ml-[6px]">
-                                leo.clerc@contact.com
+                                clercleopro@gmail.com
                             </span>
                         </p>
                     </div>

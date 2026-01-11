@@ -51,7 +51,7 @@ Ouvrir [http://localhost:3000](http://localhost:3000) pour voir le portfolio.
 
 - **LinkedIn**: [clerc-leo](https://www.linkedin.com/in/clerc-leo/)
 - **GitHub**: [Y0uS3elff](https://github.com/Y0uS3elff)
-- **Email**: leo.clerc@contact.com
+- **Email**: clercleopro@gmail.com
 
 ## 📝 License
 
