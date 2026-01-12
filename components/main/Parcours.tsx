@@ -34,7 +34,7 @@ const Parcours = () => {
         {
             year: "2025",
             title: "2ème année BTS SIO",
-            description: "Poursuite du BTS en alternance avec spécialisation développement",
+            description: "Poursuite du BTS en alternance chez MTB by Creative avec spécialisation développement",
             position: "left"
         },
         {
