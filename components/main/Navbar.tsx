@@ -29,7 +29,7 @@ const Navbar = () => {
                             Qui suis-je ?
                         </a>
                         <a href="#parcours" className="cursor-pointer">
-                            Mon histoire
+                            Mon parcours
                         </a>
                         <a href="#skills" className="cursor-pointer">
                             Mes skills
