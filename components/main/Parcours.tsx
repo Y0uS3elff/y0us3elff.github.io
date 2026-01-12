@@ -10,25 +10,25 @@ const Parcours = () => {
         {
             year: "2019",
             title: "Prix Xperium",
-            description: "Lauréat du concours Xperium à l'Université de Lille",
+            description: "Lauréat du concours Xperium à l'Université de Lille avec un groupe d'élèves de ma classe de seconde",
             position: "left"
         },
         {
             year: "2021",
             title: "Bac Général",
-            description: "Spécialités Numérique Informatique et Mathématiques",
+            description: "Spécialités Numérique Informatique et Mathématiques - Lycée Porte de Normandie à Verneuil-sur-Avre",
             position: "right"
         },
         {
             year: "2024",
             title: "BTS SIO",
-            description: "Entrée en BTS Services Informatiques aux Organisations en alternance",
+            description: "Entrée en BTS Services Informatiques aux Organisations en alternance à 3IFA (L'Aigle)",
             position: "left"
         },
         {
             year: "2024 - Présent",
             title: "Alternance chez MTB by Creative",
-            description: "Développeur en alternance - Projets Laravel et Java",
+            description: "Développeur en alternance chez MTB by Creative - Projets Laravel et Java",
             position: "right"
         },
         {
