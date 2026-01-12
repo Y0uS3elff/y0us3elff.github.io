@@ -12,27 +12,27 @@ const Projects = () => {
             </h1>
             <div className="h-full w-full grid grid-cols-1 md:grid-cols-2 gap-10 px-10 max-w-7xl">
                 <ProjectCard
-                    src="/NextWebsite.png"
+                    src="/cnp-assurances.jpg"
                     title="Application Laravel Assurance"
                     description="Développement d'une application web Laravel pour une compagnie d'assurance chez MTB by Creative. Gestion des polices, clients et sinistres."
                 />
                 <ProjectCard
-                    src="/CardImage.png"
+                    src="/java.png"
                     title="Projets Internes Java"
                     description="Développement de projets internes en Java pour MTB by Creative. Applications métiers et outils de gestion."
                 />
                 <ProjectCard
-                    src="/SpaceWebsite.png"
+                    src="/mobile.png"
                     title="Application Android Location Films"
                     description="Application mobile Android permettant aux utilisateurs de louer des films. Interface intuitive pour parcourir le catalogue et gérer ses locations. Projet BTS SIO."
                 />
                 <ProjectCard
-                    src="/CardImage.png"
+                    src="/laravel_rftg.png"
                     title="Application Laravel Admin Films"
                     description="Application web Laravel pour l'administration et la gestion du stock de films. Gestion du catalogue, des locations et des statistiques. Projet BTS SIO."
                 />
                 <ProjectCard
-                    src="/CardImage.png"
+                    src="/mtbeat.png"
                     title="Application Java Vote Restaurant"
                     description="Application Java desktop permettant aux employés de voter pour un restaurant. Génération de menus personnalisés et exploration de restaurants. Projet BTS SIO."
                 />
