@@ -69,7 +69,7 @@ const HeroContent = () => {
                                     className="text-lg md:text-xl text-gray-300 my-3 max-w-[650px] z-30"
                                 >
                                     Étudiant en BTS SIO et développeur en alternance chez MTB by Creative.
-                                    Passionné par le développement et les nouvelles technologies dont l'intelligence artificielle.
+                                    Passionné par le développement et les nouvelles technologies dont l&apos;intelligence artificielle.
                                 </motion.div>
                             )}
                         </InView>
