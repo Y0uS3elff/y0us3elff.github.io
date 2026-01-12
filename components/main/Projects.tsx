@@ -31,6 +31,11 @@ const Projects = () => {
                     title="Application Laravel Admin Films"
                     description="Application web Laravel pour l'administration et la gestion du stock de films. Gestion du catalogue, des locations et des statistiques. Projet BTS SIO."
                 />
+                <ProjectCard
+                    src="/CardImage.png"
+                    title="Application Java Vote Restaurant"
+                    description="Application Java desktop permettant aux employés de voter pour un restaurant. Génération de menus personnalisés et exploration de restaurants. Projet BTS SIO."
+                />
             </div>
         </div>
     );
