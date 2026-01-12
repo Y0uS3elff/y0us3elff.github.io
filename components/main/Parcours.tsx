@@ -20,28 +20,34 @@ const Parcours = () => {
             position: "right"
         },
         {
+            year: "2021 - 2023",
+            title: "Licence Informatique",
+            description: "Université de Rouen - Formation interrompue pour raisons de santé",
+            position: "left"
+        },
+        {
             year: "2024",
             title: "BTS SIO",
             description: "Entrée en BTS Services Informatiques aux Organisations en alternance à 3IFA (L'Aigle)",
-            position: "left"
+            position: "right"
         },
         {
             year: "2024 - Présent",
             title: "Alternance chez MTB by Creative",
             description: "Développeur en alternance chez MTB by Creative - Projets Laravel et Java",
-            position: "right"
+            position: "left"
         },
         {
             year: "2025",
             title: "2ème année BTS SIO",
             description: "Poursuite du BTS en alternance chez MTB by Creative avec spécialisation développement",
-            position: "left"
+            position: "right"
         },
         {
             year: "2026",
             title: "SUPINFO",
             description: "Intégration prévue à SUPINFO pour poursuivre mon parcours",
-            position: "right"
+            position: "left"
         }
     ];
 
