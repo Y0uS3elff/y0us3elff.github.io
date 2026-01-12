@@ -21,10 +21,10 @@ const About = () => {
                             variants={slideInFromTop}
                             className="text-[40px] pt-[5rem] pb-3 md:p-0 font-medium text-center text-gray-200 z-50"
                         >
-                            About
+                            Qui
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
                                 {" "}
-                                Me{" "}
+                                suis-je ?{" "}
                             </span>
                         </motion.div>
                     )}
