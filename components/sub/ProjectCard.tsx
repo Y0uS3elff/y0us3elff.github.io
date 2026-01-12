@@ -5,11 +5,15 @@ interface Props {
     src: string;
     title: string;
     description: string;
+    onClick?: () => void;
 }
 
-const ProjectCard = ({ src, title, description }: Props) => {
+const ProjectCard = ({ src, title, description, onClick }: Props) => {
     return (
-        <div className="relative overflow-hidden rounded-lg shadow-lg border border-[#2A0E61]">
+        <div
+            onClick={onClick}
+            className="relative overflow-hidden rounded-lg shadow-lg border border-[#2A0E61] cursor-pointer hover:border-purple-500 transition-all duration-300 hover:scale-105"
+        >
             <Image
                 src={src}
                 alt={title}
