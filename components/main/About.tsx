@@ -86,7 +86,6 @@ const About = () => {
             </div>
             <div className="absolute z-[20] bottom-[-4rem] md:bottom-[10px] px-[5px]">
                 <div className="cursive text-[20px] font-medium text-center text-gray-300">
-                    Façonner demain avec du code et de la créativité
                 </div>
             </div>
 
