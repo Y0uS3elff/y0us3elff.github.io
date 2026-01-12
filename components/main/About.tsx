@@ -72,13 +72,12 @@ const About = () => {
                             className="Welcome-box px-[15px] w-[90%] md:w-3/4 py-[8px] z-[20] brder mb-[20px] border-[#7042f88b] opacity-[0.9]"
                         >
                             <h1 className="Welcome-text text-[16px] w-full text-justify">
-                                Étudiant passionné en BTS SIO 2ème année et alternant développeur chez MTB by Creative.
-                                Titulaire d&apos;un Bac Général 2021 avec spécialités Numérique Informatique et Mathématiques.
-                                Lauréat du prix Xperium 2019 à l&apos;Université de Lille. Je développe mes compétences
-                                en Java, JavaScript, PHP, SQL, Python, Laravel et Angular. Mes expériences incluent
-                                le développement d&apos;applications Laravel pour une assurance, des projets internes en Java,
-                                ainsi qu&apos;une application de gestion de location de films avec interface Android.
-                                Prochaine étape : intégration à SUPINFO pour continuer mon parcours dans le développement.
+                                J&apos;ai 22 ans et je suis étudiant en BTS SIO 2ème année, alternant développeur depuis 2 ans chez MTB by Creative.
+                                Passionné par les nouvelles technologies et le développement de l&apos;intelligence artificielle,
+                                je développe mes compétences en Java, JavaScript, PHP, SQL, Python, Laravel et Angular.
+                                Grand fan de réalité virtuelle, je fais également partie d&apos;une équipe d&apos;esport VR
+                                pour le jeu After-H ( EVA ).
+                                Ma prochaine étape sera un Master en Intelligence Artificielle à SUPINFO.
                             </h1>
                         </motion.div>
                     )}
