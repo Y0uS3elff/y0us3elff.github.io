@@ -20,7 +20,7 @@ const Projects = () => {
             src: "/cnp-assurances.jpg",
             title: "Application Laravel Assurance",
             description: "Développement d'une application web Laravel pour une compagnie d'assurance chez MTB by Creative. Gestion des polices, clients et sinistres.",
-            detailedDescription: "Application Laravel développée chez MTB by Creative permettant la gestion complète de contrats d'assurance pour les entreprises.\n\nFonctionnalités principales :\n- Gestion des polices d'assurance\n- Suivi des clients et des contrats\n- Traitement des sinistres\n- Interface d'administration complète\n- Génération de rapports et statistiques",
+            detailedDescription: "Application pour la gestion et la création des contrats d'assurance pour les entreprises, gérée par les techniciens de l'assurance.",
             technologies: ["Laravel", "PHP", "MySQL", "HTML", "CSS", "JavaScript"]
         },
         {
@@ -42,14 +42,14 @@ const Projects = () => {
             title: "Application Laravel Admin Films",
             description: "Application web Laravel pour l'administration et la gestion du stock de films. Gestion du catalogue, des locations et des statistiques. Projet BTS SIO.",
             detailedDescription: "Application web Laravel développée dans le cadre du BTS SIO pour l'administration du catalogue de films.\n\nFonctionnalités :\n- Gestion complète du catalogue de films\n- Ajout, modification et suppression de films\n- Gestion des stocks et disponibilités\n- Suivi des locations et retours\n- Statistiques détaillées sur les locations\n- Interface d'administration moderne et ergonomique",
-            technologies: ["Laravel", "PHP", "MySQL", "Blade", "Bootstrap"]
+            technologies: ["Laravel", "PHP", "MySQL", "Bootstrap"]
         },
         {
             src: "/mtbeat.png",
             title: "Application Java Vote Restaurant",
             description: "Application Java desktop permettant aux employés de voter pour un restaurant. Génération de menus personnalisés et exploration de restaurants. Projet BTS SIO.",
             detailedDescription: "Application Java réalisée pour le bloc 2 de la première année de BTS SIO.\n\nFonctionnalités :\n- Système d'authentification des utilisateurs\n- Affichage de 3 choix de restaurants\n- Vote pour le restaurant du midi en cliquant sur un choix\n- Mise en favori du restaurant sélectionné\n- Visualisation en temps réel des votes des autres utilisateurs\n- Chaque utilisateur peut voir qui a voté pour quel restaurant\n- Interface conviviale et intuitive",
-            technologies: ["Java", "Swing", "Base de données", "JDBC"]
+            technologies: ["Java", "Swing", "Base de données"]
         }
     ];
 
