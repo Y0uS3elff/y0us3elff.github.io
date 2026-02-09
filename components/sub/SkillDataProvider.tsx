@@ -25,11 +25,14 @@ const SkillDataProvider = ({ src, width, height, index, skillName }: Props) => {
         )
     );
 
-    const handleProjectClick = () => {
+    const handleProjectClick = (projectTitle: string) => {
         const projectsSection = document.getElementById("projects");
         if (projectsSection) {
             projectsSection.scrollIntoView({ behavior: "smooth" });
         }
+        setTimeout(() => {
+            window.dispatchEvent(new CustomEvent("openProject", { detail: projectTitle }));
+        }, 500);
     };
 
     const imageVariants = {
@@ -57,7 +60,7 @@ const SkillDataProvider = ({ src, width, height, index, skillName }: Props) => {
                     {relatedProjects.map((project, i) => (
                         <button
                             key={i}
-                            onClick={handleProjectClick}
+                            onClick={() => handleProjectClick(project.title)}
                             className="text-xs px-2 py-0.5 bg-purple-500/10 border border-purple-500/30 rounded-full text-purple-300 hover:bg-purple-500/30 hover:text-white transition-all duration-150 cursor-pointer"
                         >
                             {project.title}

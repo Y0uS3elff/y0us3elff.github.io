@@ -1,12 +1,24 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProjectCard from "../sub/ProjectCard";
 import ProjectModal from "../sub/ProjectModal";
 import { projects, Project } from "@/constants";
 
 const Projects = () => {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+    useEffect(() => {
+        const handleOpenProject = (e: Event) => {
+            const title = (e as CustomEvent).detail;
+            const project = projects.find((p) => p.title === title);
+            if (project) {
+                setSelectedProject(project);
+            }
+        };
+        window.addEventListener("openProject", handleOpenProject);
+        return () => window.removeEventListener("openProject", handleOpenProject);
+    }, []);
 
     return (
         <div
