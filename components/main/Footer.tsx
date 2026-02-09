@@ -1,83 +1,42 @@
 import React from "react";
-import {
-    RxDiscordLogo,
-    RxGithubLogo,
-    RxInstagramLogo,
-    RxTwitterLogo,
-    RxLinkedinLogo,
-} from "react-icons/rx";
-
-import { FaYoutube } from "react-icons/fa";
+import { RxGithubLogo, RxLinkedinLogo } from "react-icons/rx";
 
 const Footer = () => {
     return (
-        <div className="w-full h-full bg-transparent text-gray-200 shadow-lg p-[15px] ">
-            <div className="w-full flex flex-col items-center justify-center m-auto">
-                <div className="w-full h-full flex flex-row items-center justify-around flex-wrap">
-                    <div className="min-w-[200px] h-auto flex flex-col items-center justify-start">
-                        <div className="font-bold text-[16px]">Community</div>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
-                            <FaYoutube />
-                            <span className="text-[15px] ml-[6px]">
-                                Youtube
-                            </span>
-                        </p>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
-                            <RxGithubLogo />
-                            <span className="text-[15px] ml-[6px]">Github</span>
-                        </p>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
-                            <RxDiscordLogo />
-                            <span className="text-[15px] ml-[6px]">
-                                Discord
-                            </span>
-                        </p>
-                    </div>
-                    <div className="min-w-[200px] h-auto flex flex-col items-center justify-start">
-                        <div className="font-bold text-[16px]">
-                            Social Media
-                        </div>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
-                            <FaYoutube />
-                            <span className="text-[15px] ml-[6px]">
-                                Instagram
-                            </span>
-                        </p>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
-                            <RxGithubLogo />
-                            <span className="text-[15px] ml-[6px]">
-                                Twitter
-                            </span>
-                        </p>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
-                            <RxDiscordLogo />
-                            <span className="text-[15px] ml-[6px]">
-                                Linkedin
-                            </span>
-                        </p>
-                    </div>
-                    <div className="min-w-[200px] h-auto flex flex-col items-center justify-start">
-                        <div className="font-bold text-[16px]">About</div>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
-                            <span className="text-[15px] ml-[6px]">
-                                Become Sponsor
-                            </span>
-                        </p>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
-                            <span className="text-[15px] ml-[6px]">
-                                Learning about me
-                            </span>
-                        </p>
-                        <p className="flex flex-row items-center my-[15px] cursor-pointer">
-                            <span className="text-[15px] ml-[6px]">
-                                clercleopro@gmail.com
-                            </span>
-                        </p>
-                    </div>
+        <div className="w-full bg-transparent text-gray-200 border-t border-[#7042f88b] mt-10 py-8 px-6">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="text-center md:text-left">
+                    <h3 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
+                        Léo Clerc
+                    </h3>
+                    <p className="text-sm text-gray-400 mt-1">
+                        clercleopro@gmail.com
+                    </p>
                 </div>
 
-                <div className="mb-[20px] text-[15px] text-center">
-                    &copy; Léo Clerc 2026. All rights reserved
+                <div className="flex flex-row gap-6">
+                    <a
+                        href="https://github.com/Y0uS3elff"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                    >
+                        <RxGithubLogo size={20} />
+                        <span className="text-sm">GitHub</span>
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/clerc-leo/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                    >
+                        <RxLinkedinLogo size={20} />
+                        <span className="text-sm">LinkedIn</span>
+                    </a>
+                </div>
+
+                <div className="text-sm text-gray-500">
+                    &copy; Léo Clerc 2026
                 </div>
             </div>
         </div>
