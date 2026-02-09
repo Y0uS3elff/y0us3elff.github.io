@@ -53,12 +53,12 @@ const SkillDataProvider = ({ src, width, height, index, skillName }: Props) => {
             <span className="text-gray-400 text-xs mt-1 font-medium">{skillName}</span>
 
             {relatedProjects.length > 0 && (
-                <div className="flex flex-col items-center mt-2 gap-1">
+                <div className="flex flex-col items-center mt-3 gap-1.5">
                     {relatedProjects.map((project, i) => (
                         <button
                             key={i}
                             onClick={handleProjectClick}
-                            className="text-[10px] text-purple-400 hover:text-white transition-colors duration-150 cursor-pointer leading-tight"
+                            className="text-xs px-2 py-0.5 bg-purple-500/10 border border-purple-500/30 rounded-full text-purple-300 hover:bg-purple-500/30 hover:text-white transition-all duration-150 cursor-pointer"
                         >
                             {project.title}
                         </button>
