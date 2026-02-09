@@ -21,7 +21,7 @@ const Skills = () => {
         >
             <SkillText />
 
-            <div className="flex flex-col items-center justify-center w-[95%] gap-4">
+            <div className="flex flex-col items-center justify-center w-[95%] gap-4 relative z-10">
                 <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-4">
                     <div className="w-full lg:w-1/2 h-full">
                         <InView triggerOnce={false}>
@@ -118,7 +118,7 @@ const Skills = () => {
                 </div>
             </div>
 
-            <div className="hidden md:block w-full h-full absolute top-24">
+            <div className="hidden md:block w-full h-full absolute top-24 pointer-events-none">
                 <div className="w-full h-full z-[-10] opacity-30 absolute flex items-center justify-center bg-cover">
                     <video
                         className="w-full h-auto"
