@@ -25,7 +25,9 @@ const SkillDataProvider = ({ src, width, height, index, skillName }: Props) => {
         )
     );
 
-    const handleProjectClick = (projectTitle: string) => {
+    const handleProjectClick = (e: React.MouseEvent, projectTitle: string) => {
+        e.preventDefault();
+        e.stopPropagation();
         const projectsSection = document.getElementById("projects");
         if (projectsSection) {
             projectsSection.scrollIntoView({ behavior: "smooth" });
@@ -56,15 +58,16 @@ const SkillDataProvider = ({ src, width, height, index, skillName }: Props) => {
             <span className="text-gray-400 text-xs mt-1 font-medium">{skillName}</span>
 
             {relatedProjects.length > 0 && (
-                <div className="flex flex-col items-center mt-3 gap-1.5">
+                <div className="flex flex-col items-center mt-3 gap-1.5 relative z-30">
                     {relatedProjects.map((project, i) => (
-                        <button
+                        <a
                             key={i}
-                            onClick={() => handleProjectClick(project.title)}
-                            className="text-xs px-2 py-0.5 bg-purple-500/10 border border-purple-500/30 rounded-full text-purple-300 hover:bg-purple-500/30 hover:text-white transition-all duration-150 cursor-pointer"
+                            href="#projects"
+                            onClick={(e) => handleProjectClick(e, project.title)}
+                            className="text-xs px-2 py-1 bg-purple-500/20 border border-purple-500/40 rounded-full text-purple-300 hover:bg-purple-500/40 hover:text-white transition-all duration-150 cursor-pointer relative z-30 underline decoration-purple-500/30 hover:decoration-white"
                         >
                             {project.title}
-                        </button>
+                        </a>
                     ))}
                 </div>
             )}

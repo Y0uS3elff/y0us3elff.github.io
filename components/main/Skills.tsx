@@ -37,7 +37,7 @@ const Skills = () => {
                                         Langages{" "}
                                     </span>
                                     <br />
-                                    <div className="flex flex-row justify-around flex-wrap my-4 gap-5 items-center">
+                                    <div className="flex flex-row justify-around flex-wrap my-4 gap-5 items-start">
                                         {Frontend_skill.map((image, index) => (
                                             <SkillDataProvider
                                                 key={index}
@@ -67,7 +67,7 @@ const Skills = () => {
                                         Outils{" "}
                                     </span>
                                     <br />
-                                    <div className="flex flex-row justify-around flex-wrap my-4 gap-5 items-center">
+                                    <div className="flex flex-row justify-around flex-wrap my-4 gap-5 items-start">
                                         {Backend_skill.map((image, index) => (
                                             <SkillDataProvider
                                                 key={index}
@@ -99,7 +99,7 @@ const Skills = () => {
                                         Frameworks & Librairies{" "}
                                     </span>
                                     <br />
-                                    <div className="flex flex-row justify-around flex-wrap my-4 gap-5 items-center">
+                                    <div className="flex flex-row justify-around flex-wrap my-4 gap-5 items-start">
                                         {libraries.map((image, index) => (
                                             <SkillDataProvider
                                                 key={index}
