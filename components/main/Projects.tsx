@@ -9,15 +9,21 @@ const Projects = () => {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     useEffect(() => {
-        const handleOpenProject = (e: Event) => {
-            const title = (e as CustomEvent).detail;
-            const project = projects.find((p) => p.title === title);
-            if (project) {
-                setSelectedProject(project);
+        const handleClick = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            const link = target.closest("[data-project]") as HTMLElement | null;
+            if (link) {
+                const title = link.getAttribute("data-project");
+                if (title) {
+                    const project = projects.find((p) => p.title === title);
+                    if (project) {
+                        setTimeout(() => setSelectedProject(project), 600);
+                    }
+                }
             }
         };
-        window.addEventListener("openProject", handleOpenProject);
-        return () => window.removeEventListener("openProject", handleOpenProject);
+        document.addEventListener("click", handleClick);
+        return () => document.removeEventListener("click", handleClick);
     }, []);
 
     return (

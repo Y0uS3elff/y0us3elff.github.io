@@ -25,18 +25,6 @@ const SkillDataProvider = ({ src, width, height, index, skillName }: Props) => {
         )
     );
 
-    const handleProjectClick = (e: React.MouseEvent, projectTitle: string) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const projectsSection = document.getElementById("projects");
-        if (projectsSection) {
-            projectsSection.scrollIntoView({ behavior: "smooth" });
-        }
-        setTimeout(() => {
-            window.dispatchEvent(new CustomEvent("openProject", { detail: projectTitle }));
-        }, 500);
-    };
-
     const imageVariants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
@@ -63,7 +51,7 @@ const SkillDataProvider = ({ src, width, height, index, skillName }: Props) => {
                         <a
                             key={i}
                             href="#projects"
-                            onClick={(e) => handleProjectClick(e, project.title)}
+                            data-project={project.title}
                             className="text-xs px-2 py-1 bg-purple-500/20 border border-purple-500/40 rounded-full text-purple-300 hover:bg-purple-500/40 hover:text-white transition-all duration-150 cursor-pointer relative z-30 underline decoration-purple-500/30 hover:decoration-white"
                         >
                             {project.title}
