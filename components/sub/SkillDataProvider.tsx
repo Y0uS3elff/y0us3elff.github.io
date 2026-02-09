@@ -32,6 +32,13 @@ const SkillDataProvider = ({ src, width, height, index, skillName }: Props) => {
 
     const animationDelay = 0.3;
 
+    const handleProjectClick = (projectTitle: string) => {
+        document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+        window.dispatchEvent(
+            new CustomEvent("open-project", { detail: { title: projectTitle } })
+        );
+    };
+
     return (
         <motion.div
             ref={ref}
@@ -46,16 +53,23 @@ const SkillDataProvider = ({ src, width, height, index, skillName }: Props) => {
             <span className="text-gray-400 text-xs mt-1 font-medium">{skillName}</span>
 
             {relatedProjects.length > 0 && (
-                <div className="flex flex-col items-center mt-3 gap-1.5 relative z-30">
+                <div className="flex flex-col items-center mt-3 gap-1.5"
+                    style={{ position: "relative", zIndex: 9999, pointerEvents: "auto" }}
+                >
                     {relatedProjects.map((project, i) => (
-                        <a
+                        <button
                             key={i}
-                            href="#projects"
-                            data-project={project.title}
-                            className="text-xs px-2 py-1 bg-purple-500/20 border border-purple-500/40 rounded-full text-purple-300 hover:bg-purple-500/40 hover:text-white transition-all duration-150 cursor-pointer relative z-30 underline decoration-purple-500/30 hover:decoration-white"
+                            type="button"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleProjectClick(project.title);
+                            }}
+                            style={{ position: "relative", zIndex: 9999, pointerEvents: "auto" }}
+                            className="text-xs px-2 py-1 bg-purple-500/20 border border-purple-500/40 rounded-full text-purple-300 hover:bg-purple-500/40 hover:text-white transition-all duration-150 cursor-pointer underline decoration-purple-500/30 hover:decoration-white"
                         >
                             {project.title}
-                        </a>
+                        </button>
                     ))}
                 </div>
             )}
