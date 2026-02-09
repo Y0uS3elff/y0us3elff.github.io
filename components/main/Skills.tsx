@@ -45,6 +45,7 @@ const Skills = () => {
                                                 width={image.width}
                                                 height={image.height}
                                                 index={index}
+                                                skillName={image.skill_name}
                                             />
                                         ))}
                                     </div>
@@ -74,6 +75,7 @@ const Skills = () => {
                                                 width={image.width}
                                                 height={image.height}
                                                 index={index}
+                                                skillName={image.skill_name}
                                             />
                                         ))}
                                     </div>
@@ -105,6 +107,7 @@ const Skills = () => {
                                                 width={image.width}
                                                 height={image.height}
                                                 index={index}
+                                                skillName={image.skill_name}
                                             />
                                         ))}
                                     </div>

@@ -17,6 +17,16 @@ interface Props {
 const ProjectModal = ({ isOpen, onClose, title, description, detailedDescription, src, technologies }: Props) => {
     if (!isOpen) return null;
 
+    const handleTechClick = (tech: string) => {
+        onClose();
+        setTimeout(() => {
+            const skillsSection = document.getElementById("skills");
+            if (skillsSection) {
+                skillsSection.scrollIntoView({ behavior: "smooth" });
+            }
+        }, 300);
+    };
+
     return (
         <AnimatePresence>
             {isOpen && (
@@ -74,12 +84,13 @@ const ProjectModal = ({ isOpen, onClose, title, description, detailedDescription
                                         <h3 className="text-xl font-semibold text-white mb-3">Technologies utilisées</h3>
                                         <div className="flex flex-wrap gap-2">
                                             {technologies.map((tech, index) => (
-                                                <span
+                                                <button
                                                     key={index}
-                                                    className="px-3 py-1 bg-purple-500/20 border border-purple-500/50 rounded-full text-sm text-purple-300"
+                                                    onClick={() => handleTechClick(tech)}
+                                                    className="px-3 py-1 bg-purple-500/20 border border-purple-500/50 rounded-full text-sm text-purple-300 hover:bg-purple-500/40 hover:border-purple-400 hover:text-white transition-all duration-200 cursor-pointer"
                                                 >
                                                     {tech}
-                                                </span>
+                                                </button>
                                             ))}
                                         </div>
                                     </div>
