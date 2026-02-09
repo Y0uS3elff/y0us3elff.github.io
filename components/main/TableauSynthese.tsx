@@ -25,26 +25,13 @@ const TableauSynthese = () => {
                 )}
             </InView>
 
-            <div className="w-full max-w-7xl px-4">
-                <div className="bg-[#0300145e] backdrop-blur-sm border border-[#7042f88b] rounded-lg p-4 md:p-6">
-                    <iframe
-                        src="/tableau-synthese.pdf"
-                        className="w-full rounded-lg"
-                        style={{ height: "80vh", minHeight: "600px" }}
-                        title="Tableau de synthèse des réalisations professionnelles"
-                    />
-                    <div className="mt-4 text-center">
-                        <a
-                            href="/tableau-synthese.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block px-6 py-2 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
-                        >
-                            Ouvrir le PDF en plein écran
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <a
+                href="/tableau-synthese.pdf"
+                download
+                className="px-8 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity text-lg"
+            >
+                Télécharger le tableau de synthèse
+            </a>
         </section>
     );
 };
