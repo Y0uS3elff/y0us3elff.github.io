@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
@@ -15,8 +15,6 @@ interface Props {
 }
 
 const SkillDataProvider = ({ src, width, height, index, skillName }: Props) => {
-    const [showPopup, setShowPopup] = useState(false);
-    const popupRef = useRef<HTMLDivElement>(null);
     const { ref, inView } = useInView({
         triggerOnce: true,
     });
@@ -27,20 +25,7 @@ const SkillDataProvider = ({ src, width, height, index, skillName }: Props) => {
         )
     );
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
-                setShowPopup(false);
-            }
-        };
-        if (showPopup) {
-            document.addEventListener("mousedown", handleClickOutside);
-        }
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [showPopup]);
-
-    const handleProjectClick = (projectTitle: string) => {
-        setShowPopup(false);
+    const handleProjectClick = () => {
         const projectsSection = document.getElementById("projects");
         if (projectsSection) {
             projectsSection.scrollIntoView({ behavior: "smooth" });
@@ -62,36 +47,22 @@ const SkillDataProvider = ({ src, width, height, index, skillName }: Props) => {
             animate={inView ? "visible" : "hidden"}
             custom={index}
             transition={{ delay: index * animationDelay }}
-            className="relative flex flex-col items-center"
+            className="flex flex-col items-center min-w-[100px]"
         >
-            <div
-                onClick={() => relatedProjects.length > 0 && setShowPopup(!showPopup)}
-                className={`flex flex-col items-center gap-1 ${relatedProjects.length > 0 ? "cursor-pointer hover:scale-110 transition-transform duration-200" : ""}`}
-                title={relatedProjects.length > 0 ? `Voir les projets utilisant ${skillName}` : skillName}
-            >
-                <Image src={src} width={width} height={height} alt={skillName} />
-                <span className="text-gray-400 text-xs mt-1">{skillName}</span>
-            </div>
+            <Image src={src} width={width} height={height} alt={skillName} />
+            <span className="text-gray-400 text-xs mt-1 font-medium">{skillName}</span>
 
-            {showPopup && relatedProjects.length > 0 && (
-                <div
-                    ref={popupRef}
-                    className="absolute top-full mt-2 z-50 bg-[#0c0524] border border-[#7042f88b] rounded-lg p-3 min-w-[220px] shadow-xl shadow-purple-500/10"
-                >
-                    <p className="text-xs text-gray-400 mb-2 font-semibold">
-                        Projets utilisant {skillName} :
-                    </p>
-                    <div className="flex flex-col gap-1">
-                        {relatedProjects.map((project, i) => (
-                            <button
-                                key={i}
-                                onClick={() => handleProjectClick(project.title)}
-                                className="text-left text-sm text-purple-300 hover:text-white hover:bg-purple-500/20 rounded px-2 py-1.5 transition-all duration-150"
-                            >
-                                {project.title}
-                            </button>
-                        ))}
-                    </div>
+            {relatedProjects.length > 0 && (
+                <div className="flex flex-col items-center mt-2 gap-1">
+                    {relatedProjects.map((project, i) => (
+                        <button
+                            key={i}
+                            onClick={handleProjectClick}
+                            className="text-[10px] text-purple-400 hover:text-white transition-colors duration-150 cursor-pointer leading-tight"
+                        >
+                            {project.title}
+                        </button>
+                    ))}
                 </div>
             )}
         </motion.div>
