@@ -4,6 +4,7 @@ import Projects from "@/components/main/Projects";
 import Skills from "@/components/main/Skills";
 import Parcours from "@/components/main/Parcours";
 import VeilleTechnologique from "@/components/main/VeilleTechnologique";
+import TableauSynthese from "@/components/main/TableauSynthese";
 
 export default function Home() {
     return (
@@ -15,6 +16,7 @@ export default function Home() {
 				<Skills />
 				<Projects />
 				<VeilleTechnologique />
+				<TableauSynthese />
 			</div>
         </main>
     );

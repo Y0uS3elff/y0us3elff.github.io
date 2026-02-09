@@ -40,6 +40,9 @@ const Navbar = () => {
                         <a href="#veille" className="cursor-pointer">
                             Veille tech
                         </a>
+                        <a href="#synthese" className="cursor-pointer">
+                            Synthèse
+                        </a>
                     </div>
                 </div>
 
