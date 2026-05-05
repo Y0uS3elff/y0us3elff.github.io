@@ -1,135 +1,141 @@
 "use client";
 
-import {
-    Backend_skill,
-    Frontend_skill,
-	libraries,
-} from "@/constants";
 import React from "react";
-import SkillDataProvider from "../sub/SkillDataProvider";
-import SkillText from "../sub/SkillText";
-import { InView } from "react-intersection-observer";
-import { slideInFromLeft, slideInFromRight } from "@/utils/motion";
+import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { fadeUp, stagger } from "@/utils/motion";
+import { Backend_skill, Frontend_skill, libraries, projects } from "@/constants";
+
+type Skill = {
+    skill_name: string;
+    Image: string;
+    width: number;
+    height: number;
+};
+
+const SkillTile = ({ skill }: { skill: Skill }) => {
+    const related = projects.filter((p) =>
+        p.technologies.some(
+            (t) => t.toLowerCase() === skill.skill_name.toLowerCase()
+        )
+    );
+
+    return (
+        <motion.div
+            variants={fadeUp(0)}
+            className="group relative flex flex-col items-center justify-center p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500 ease-apple"
+        >
+            <div className="h-12 flex items-center justify-center">
+                <Image
+                    src={skill.Image}
+                    alt={skill.skill_name}
+                    width={skill.width}
+                    height={skill.height}
+                    className="object-contain max-h-12 w-auto"
+                />
+            </div>
+            <p className="mt-3 text-[13px] text-apple-gray-300 font-medium">
+                {skill.skill_name}
+            </p>
+            {related.length > 0 && (
+                <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5">
+                    {related.map((p) => (
+                        <Link
+                            key={p.slug}
+                            href={`/projects/${p.slug}`}
+                            className="text-[10px] px-2 py-0.5 rounded-full bg-apple-blue/10 border border-apple-blue/30 text-apple-blue hover:bg-apple-blue/20 transition"
+                        >
+                            {p.title.length > 24 ? p.title.slice(0, 22) + "…" : p.title}
+                        </Link>
+                    ))}
+                </div>
+            )}
+        </motion.div>
+    );
+};
+
+const SkillCategory = ({
+    label,
+    items,
+    cols,
+}: {
+    label: string;
+    items: Skill[];
+    cols: string;
+}) => (
+    <motion.div
+        variants={fadeUp(0)}
+        className="card-dark p-7 md:p-9"
+    >
+        <p className="text-[12px] tracking-[0.2em] uppercase text-apple-blue mb-6">
+            {label}
+        </p>
+        <div className={`grid ${cols} gap-3`}>
+            {items.map((s) => (
+                <SkillTile key={s.skill_name} skill={s} />
+            ))}
+        </div>
+    </motion.div>
+);
 
 const Skills = () => {
     return (
         <section
             id="skills"
-            className="flex flex-col items-center justify-center gap-3 h-fit relative py-20 z-30"
+            className="relative bg-black text-white py-32 md:py-40 px-6 overflow-hidden"
         >
-            <SkillText />
+            <div
+                className="halo-blue"
+                style={{ top: "20%", right: "-20%", width: "55vw", height: "55vw", opacity: 0.35 }}
+            />
 
-            <div className="flex flex-col items-center justify-center w-[95%] gap-4 relative z-10">
-                <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-4">
-                    <div className="w-full lg:w-1/2 h-full">
-                        <InView triggerOnce={false}>
-                            {({ inView, ref }) => (
-                                <motion.div
-                                    ref={ref}
-                                    initial="hidden"
-                                    animate={inView ? "visible" : "hidden"}
-                                    variants={slideInFromLeft(0.5)}
-                                    className="rounded-md text-[white] w-full my-auto py-[8px] px-[10px] border border-[#7042f88b] opacity-[0.9]"
-                                >
-                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 text-2xl font-bold">
-                                        Langages{" "}
-                                    </span>
-                                    <br />
-                                    <div className="flex flex-row justify-around flex-wrap my-4 gap-5 items-start">
-                                        {Frontend_skill.map((image, index) => (
-                                            <SkillDataProvider
-                                                key={index}
-                                                src={image.Image}
-                                                width={image.width}
-                                                height={image.height}
-                                                index={index}
-                                                skillName={image.skill_name}
-                                            />
-                                        ))}
-                                    </div>
-                                </motion.div>
-                            )}
-                        </InView>
-                    </div>
-                    <div className="w-full lg:w-1/2 h-full">
-                        <InView triggerOnce={false}>
-                            {({ inView, ref }) => (
-                                <motion.div
-                                    ref={ref}
-                                    initial="hidden"
-                                    animate={inView ? "visible" : "hidden"}
-                                    variants={slideInFromRight(0.5)}
-                                    className="rounded-md text-[white] w-full h-full py-[8px] px-[10px] border border-[#7042f88b] opacity-[0.9]"
-                                >
-                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 text-2xl font-bold">
-                                        Outils{" "}
-                                    </span>
-                                    <br />
-                                    <div className="flex flex-row justify-around flex-wrap my-4 gap-5 items-start">
-                                        {Backend_skill.map((image, index) => (
-                                            <SkillDataProvider
-                                                key={index}
-                                                src={image.Image}
-                                                width={image.width}
-                                                height={image.height}
-                                                index={index}
-                                                skillName={image.skill_name}
-                                            />
-                                        ))}
-                                    </div>
-                                </motion.div>
-                            )}
-                        </InView>
-                    </div>
-                </div>
-                <div className="w-full flex flex-col items-center justify-center gap-4">
-                    <div className="w-full lg:w-1/2">
-                        <InView triggerOnce={false}>
-                            {({ inView, ref }) => (
-                                <motion.div
-                                    ref={ref}
-                                    initial="hidden"
-                                    animate={inView ? "visible" : "hidden"}
-                                    variants={slideInFromLeft(0.5)}
-                                    className="rounded-md text-[white] w-full py-[8px] px-[10px] border border-[#7042f88b] opacity-[0.9]"
-                                >
-                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 text-2xl font-bold">
-                                        Frameworks & Librairies{" "}
-                                    </span>
-                                    <br />
-                                    <div className="flex flex-row justify-around flex-wrap my-4 gap-5 items-start">
-                                        {libraries.map((image, index) => (
-                                            <SkillDataProvider
-                                                key={index}
-                                                src={image.Image}
-                                                width={image.width}
-                                                height={image.height}
-                                                index={index}
-                                                skillName={image.skill_name}
-                                            />
-                                        ))}
-                                    </div>
-                                </motion.div>
-                            )}
-                        </InView>
-                    </div>
-                </div>
-            </div>
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                variants={stagger(0.08)}
+                className="relative z-10 max-w-6xl mx-auto"
+            >
+                <motion.p
+                    variants={fadeUp(0)}
+                    className="text-[13px] tracking-[0.2em] uppercase text-apple-blue mb-6"
+                >
+                    Compétences
+                </motion.p>
+                <motion.h2
+                    variants={fadeUp(0.05)}
+                    className="font-semibold tracking-tight mb-16"
+                    style={{
+                        fontSize: "clamp(2.5rem, 6vw, 4rem)",
+                        lineHeight: 1.08,
+                        letterSpacing: "-0.02em",
+                    }}
+                >
+                    <span className="block">Les outils,</span>
+                    <span className="block title-muted">les langages, les usages.</span>
+                </motion.h2>
 
-            <div className="hidden md:block w-full h-full absolute top-24 pointer-events-none">
-                <div className="w-full h-full z-[-10] opacity-30 absolute flex items-center justify-center bg-cover">
-                    <video
-                        className="w-full h-auto"
-                        preload="false"
-                        playsInline
-                        loop
-                        muted
-                        autoPlay
-                        src="/cards-video.webm"
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="md:col-span-2">
+                        <SkillCategory
+                            label="Langages"
+                            items={Frontend_skill}
+                            cols="grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7"
+                        />
+                    </div>
+                    <SkillCategory
+                        label="Frameworks & librairies"
+                        items={libraries}
+                        cols="grid-cols-2"
+                    />
+                    <SkillCategory
+                        label="Outils"
+                        items={Backend_skill}
+                        cols="grid-cols-3"
                     />
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 };
