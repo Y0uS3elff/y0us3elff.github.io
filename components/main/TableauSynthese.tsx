@@ -2,36 +2,69 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { slideInFromTop } from "@/utils/motion";
-import { InView } from "react-intersection-observer";
+import { fadeUp, stagger } from "@/utils/motion";
 
 const TableauSynthese = () => {
     return (
         <section
             id="synthese"
-            className="flex flex-col items-center justify-center w-full py-20 relative z-30"
+            className="relative bg-apple-gray-50 text-apple-gray-700 py-32 md:py-40 px-6"
         >
-            <InView triggerOnce={false}>
-                {({ inView, ref }) => (
-                    <motion.h1
-                        ref={ref}
-                        initial="hidden"
-                        animate={inView ? "visible" : "hidden"}
-                        variants={slideInFromTop}
-                        className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 mb-10"
-                    >
-                        Tableau de Synthèse
-                    </motion.h1>
-                )}
-            </InView>
-
-            <a
-                href="/tableau-synthese.pdf"
-                download
-                className="px-8 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity text-lg"
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={stagger(0.1)}
+                className="max-w-3xl mx-auto text-center"
             >
-                Télécharger le tableau de synthèse
-            </a>
+                <motion.p
+                    variants={fadeUp(0)}
+                    className="text-[13px] tracking-[0.2em] uppercase text-apple-blue mb-6"
+                >
+                    Synthèse
+                </motion.p>
+                <motion.h2
+                    variants={fadeUp(0.05)}
+                    className="font-semibold tracking-tight"
+                    style={{
+                        fontSize: "clamp(2.5rem, 6vw, 4rem)",
+                        lineHeight: 1.08,
+                        letterSpacing: "-0.02em",
+                    }}
+                >
+                    <span className="block">Tableau de synthèse,</span>
+                    <span className="block title-muted-dark">en un document.</span>
+                </motion.h2>
+
+                <motion.p
+                    variants={fadeUp(0.1)}
+                    className="mt-8 text-[18px] text-apple-gray-500 leading-relaxed"
+                >
+                    Récapitulatif des réalisations professionnelles et compétences
+                    couvertes dans le cadre du BTS SIO option SLAM.
+                </motion.p>
+
+                <motion.div
+                    variants={fadeUp(0.15)}
+                    className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+                >
+                    <a
+                        href="/tableau-synthese.pdf"
+                        download
+                        className="btn-pill btn-pill-primary"
+                    >
+                        Télécharger le PDF ↓
+                    </a>
+                    <a
+                        href="/tableau-synthese.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-pill btn-pill-ghost"
+                    >
+                        Ouvrir dans le navigateur →
+                    </a>
+                </motion.div>
+            </motion.div>
         </section>
     );
 };

@@ -8,16 +8,14 @@ import TableauSynthese from "@/components/main/TableauSynthese";
 
 export default function Home() {
     return (
-        <main className="h-full w-full">
-			<div className="flex flex-col gap-20">
-				<Hero />
-				<About />
-				<Parcours />
-				<Skills />
-				<Projects />
-				<VeilleTechnologique />
-				<TableauSynthese />
-			</div>
+        <main className="w-full">
+            <Hero />
+            <About />
+            <Parcours />
+            <Skills />
+            <Projects />
+            <VeilleTechnologique />
+            <TableauSynthese />
         </main>
     );
-}  
+}
