@@ -1,104 +1,84 @@
 "use client";
-import React from "react";
 
+import React from "react";
 import { motion } from "framer-motion";
-import { slideInFromBottom, slideInFromLeft, slideInFromRight, slideInFromTop } from "@/utils/motion";
-import { InView } from "react-intersection-observer";
+import { fadeUp, stagger } from "@/utils/motion";
 
 const About = () => {
     return (
         <section
             id="about"
-            className="flex flex-col md:flex-row relative items-center justify-center min-h-screen w-full h-full"
+            className="relative bg-apple-gray-50 text-apple-gray-700 py-32 md:py-40 px-6"
         >
-            <div className="md:absolute w-auto h-auto md:top-[80px] z-[5]">
-                <InView triggerOnce={false}>
-                    {({ inView, ref }) => (
-                        <motion.div
-                            ref={ref}
-                            initial="hidden"
-                            animate={inView ? "visible" : "hidden"}
-                            variants={slideInFromTop}
-                            className="text-[40px] pt-[5rem] pb-3 md:p-0 font-medium text-center text-gray-200 z-50"
-                        >
-                            Qui
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-                                {" "}
-                                suis-je ?{" "}
-                            </span>
-                        </motion.div>
-                    )}
-                </InView>
-            </div>
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={stagger(0.1)}
+                className="max-w-6xl mx-auto"
+            >
+                <motion.p
+                    variants={fadeUp(0)}
+                    className="text-[13px] tracking-[0.2em] uppercase text-apple-blue mb-6"
+                >
+                    Qui suis-je
+                </motion.p>
 
-            <div className="flex flex-col items-center justify-start relative md:mt-[90px] lg:mt-12 z-[20] w-auto h-auto">
-                <InView triggerOnce={false}>
-                    {({ inView, ref }) => (
-                        <motion.div
-                            ref={ref}
-                            initial="hidden"
-                            animate={inView ? "visible" : "hidden"}
-                            variants={slideInFromLeft(0.5)}
-                            className="flex flex-col items-center w-auto h-auto rounded-full overflow-hidden border-[6px] border-[#7042f88b] bg-gradient-to-r from-purple-500 to-cyan-500"
-                        >
-                            <img src="/leo.jpg" alt="profile" width={250} />
-                        </motion.div>
-                    )}
-                </InView>
+                <motion.h2
+                    variants={fadeUp(0.05)}
+                    className="font-semibold tracking-tight"
+                    style={{
+                        fontSize: "clamp(2.5rem, 6vw, 4rem)",
+                        lineHeight: 1.08,
+                        letterSpacing: "-0.02em",
+                    }}
+                >
+                    <span className="block text-apple-gray-700">Étudiant, alternant,</span>
+                    <span className="block title-muted-dark">passionné de technologie.</span>
+                </motion.h2>
 
-                <InView triggerOnce={false}>
-                    {({ inView, ref }) => (
-                        <motion.div
-                            ref={ref}
-                            initial="hidden"
-                            animate={inView ? "visible" : "hidden"}
-                            variants={slideInFromRight(0.5)}
-                            className="Welcome-box px-[15px] py-[8px] z-[20] brder my-[20px] border-[#7042f88b] opacity-[0.9]"
-                        >
-                            <h1 className="Welcome-text text-[20px] font-bold">
-                                Léo Clerc
-                            </h1>
-                        </motion.div>
-                    )}
-                </InView>
+                <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+                    <motion.div
+                        variants={fadeUp(0.1)}
+                        className="md:col-span-1 flex justify-center md:justify-start"
+                    >
+                        <div className="relative w-full max-w-[280px] aspect-square rounded-3xl overflow-hidden shadow-card-light bg-white">
+                            <img
+                                src="/leo.jpg"
+                                alt="Léo Clerc"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                    </motion.div>
 
-                <InView triggerOnce={false}>
-                    {({ inView, ref }) => (
-                        <motion.div
-                            ref={ref}
-                            initial="hidden"
-                            animate={inView ? "visible" : "hidden"}
-                            variants={slideInFromBottom}
-                            className="Welcome-box px-[15px] w-[90%] md:w-3/4 py-[8px] z-[20] brder mb-[20px] border-[#7042f88b] opacity-[0.9]"
-                        >
-                            <h1 className="Welcome-text text-[16px] w-full text-justify">
-                                J&apos;ai 22 ans et je suis étudiant en BTS SIO 2ème année, alternant développeur depuis 2 ans chez MTB by Creative.
-                                Passionné par les nouvelles technologies et le développement de l&apos;intelligence artificielle,
-                                je développe mes compétences en Java, JavaScript, PHP, SQL, Python, Laravel et Angular.
-                                Grand fan de réalité virtuelle, je fais également partie d&apos;une équipe d&apos;esport VR
-                                pour le jeu After-H ( EVA ).
-                                Ma prochaine étape sera un Master en Intelligence Artificielle à SUPINFO.
-                            </h1>
-                        </motion.div>
-                    )}
-                </InView>
-            </div>
-            <div className="absolute z-[20] bottom-[-4rem] md:bottom-[10px] px-[5px]">
-                <div className="cursive text-[20px] font-medium text-center text-gray-300">
+                    <motion.div
+                        variants={fadeUp(0.15)}
+                        className="md:col-span-2 space-y-5 text-[17px] md:text-[19px] leading-[1.6] text-apple-gray-600"
+                    >
+                        <p>
+                            J&apos;ai 22 ans et je suis étudiant en BTS SIO 2<sup>ème</sup> année,
+                            alternant développeur depuis 2 ans chez{" "}
+                            <span className="text-apple-gray-700 font-medium">MTB by Creative</span>.
+                        </p>
+                        <p>
+                            Passionné par les nouvelles technologies et le développement de
+                            l&apos;intelligence artificielle, je développe mes compétences en
+                            Java, JavaScript, PHP, SQL, Python, Laravel et Angular.
+                        </p>
+                        <p>
+                            Grand fan de réalité virtuelle, je fais également partie d&apos;une
+                            équipe d&apos;<span className="text-apple-gray-700 font-medium">esport VR</span>{" "}
+                            pour le jeu <span className="text-apple-gray-700 font-medium">After-H (EVA)</span>.
+                        </p>
+                        <p>
+                            Ma prochaine étape sera un{" "}
+                            <span className="text-apple-blue font-medium">
+                                Master en Intelligence Artificielle à SUPINFO
+                            </span>.
+                        </p>
+                    </motion.div>
                 </div>
-            </div>
-
-            <div className="w-full hidden md:flex items-start justify-center absolute top-[1px]">
-                <video
-                    loop
-                    muted
-                    autoPlay
-                    playsInline
-                    preload="false"
-                    className="h-full"
-                    src="/encryption.webm/"
-                />
-            </div>
+            </motion.div>
         </section>
     );
 };
