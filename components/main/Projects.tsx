@@ -1,28 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ProjectCard from "../sub/ProjectCard";
-import ProjectModal from "../sub/ProjectModal";
-import { projects, Project } from "@/constants";
+import { projects } from "@/constants";
 
 const Projects = () => {
-    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-    useEffect(() => {
-        const handleOpenProject = (e: Event) => {
-            const customEvent = e as CustomEvent<{ title: string }>;
-            const title = customEvent.detail?.title;
-            if (title) {
-                const project = projects.find((p) => p.title === title);
-                if (project) {
-                    setTimeout(() => setSelectedProject(project), 600);
-                }
-            }
-        };
-        window.addEventListener("open-project", handleOpenProject);
-        return () => window.removeEventListener("open-project", handleOpenProject);
-    }, []);
-
     return (
         <div
             className="flex flex-col items-center justify-center py-20 relative z-30"
@@ -35,23 +17,13 @@ const Projects = () => {
                 {projects.map((project, index) => (
                     <ProjectCard
                         key={index}
+                        slug={project.slug}
                         src={project.src}
                         title={project.title}
                         description={project.description}
-                        onClick={() => setSelectedProject(project)}
                     />
                 ))}
             </div>
-
-            <ProjectModal
-                isOpen={selectedProject !== null}
-                onClose={() => setSelectedProject(null)}
-                title={selectedProject?.title || ""}
-                description={selectedProject?.description || ""}
-                detailedDescription={selectedProject?.detailedDescription || ""}
-                src={selectedProject?.src || ""}
-                technologies={selectedProject?.technologies}
-            />
         </div>
     );
 };
