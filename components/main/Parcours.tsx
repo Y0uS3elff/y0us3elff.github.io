@@ -2,119 +2,120 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { slideInFromLeft, slideInFromRight, slideInFromTop } from "@/utils/motion";
-import { InView } from "react-intersection-observer";
+import { fadeUp, stagger } from "@/utils/motion";
+
+type ParcoursItem = {
+    year: string;
+    title: string;
+    description: string;
+};
+
+const parcours: ParcoursItem[] = [
+    {
+        year: "2019",
+        title: "Prix Xperium",
+        description:
+            "Lauréat du concours Xperium à l'Université de Lille avec un groupe d'élèves de ma classe de seconde.",
+    },
+    {
+        year: "2021",
+        title: "Bac Général",
+        description:
+            "Spécialités Numérique Informatique et Mathématiques — Lycée Porte de Normandie à Verneuil-sur-Avre.",
+    },
+    {
+        year: "2021 — 2023",
+        title: "Licence Informatique",
+        description:
+            "Université de Rouen — Formation interrompue pour raisons de santé.",
+    },
+    {
+        year: "2024",
+        title: "BTS SIO",
+        description:
+            "Entrée en BTS Services Informatiques aux Organisations en alternance à 3IFA (L'Aigle).",
+    },
+    {
+        year: "2024 — Présent",
+        title: "Alternance chez MTB by Creative",
+        description:
+            "Développeur en alternance chez MTB by Creative — projets Laravel et Java.",
+    },
+    {
+        year: "2025",
+        title: "2ème année BTS SIO",
+        description:
+            "Poursuite du BTS en alternance chez MTB by Creative avec spécialisation développement.",
+    },
+    {
+        year: "2026",
+        title: "SUPINFO",
+        description:
+            "Intégration prévue à SUPINFO pour poursuivre mon parcours en Master IA.",
+    },
+];
 
 const Parcours = () => {
-    const parcours = [
-        {
-            year: "2019",
-            title: "Prix Xperium",
-            description: "Lauréat du concours Xperium à l'Université de Lille avec un groupe d'élèves de ma classe de seconde",
-            position: "left"
-        },
-        {
-            year: "2021",
-            title: "Bac Général",
-            description: "Spécialités Numérique Informatique et Mathématiques - Lycée Porte de Normandie à Verneuil-sur-Avre",
-            position: "right"
-        },
-        {
-            year: "2021 - 2023",
-            title: "Licence Informatique",
-            description: "Université de Rouen - Formation interrompue pour raisons de santé",
-            position: "left"
-        },
-        {
-            year: "2024",
-            title: "BTS SIO",
-            description: "Entrée en BTS Services Informatiques aux Organisations en alternance à 3IFA (L'Aigle)",
-            position: "right"
-        },
-        {
-            year: "2024 - Présent",
-            title: "Alternance chez MTB by Creative",
-            description: "Développeur en alternance chez MTB by Creative - Projets Laravel et Java",
-            position: "left"
-        },
-        {
-            year: "2025",
-            title: "2ème année BTS SIO",
-            description: "Poursuite du BTS en alternance chez MTB by Creative avec spécialisation développement",
-            position: "right"
-        },
-        {
-            year: "2026",
-            title: "SUPINFO",
-            description: "Intégration prévue à SUPINFO pour poursuivre mon parcours",
-            position: "left"
-        }
-    ];
-
     return (
         <section
             id="parcours"
-            className="flex flex-col items-center justify-center min-h-screen w-full py-20 relative"
+            className="relative bg-black text-white py-32 md:py-40 px-6 overflow-hidden"
         >
-            <InView triggerOnce={false}>
-                {({ inView, ref }) => (
-                    <motion.h1
-                        ref={ref}
-                        initial="hidden"
-                        animate={inView ? "visible" : "hidden"}
-                        variants={slideInFromTop}
-                        className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 mb-20"
-                    >
-                        Mon Parcours
-                    </motion.h1>
-                )}
-            </InView>
+            <div
+                className="halo-blue"
+                style={{ top: "10%", left: "-15%", width: "45vw", height: "45vw", opacity: 0.3 }}
+            />
 
-            <div className="relative w-full max-w-6xl px-5 md:px-10">
-                {/* Ligne verticale centrale */}
-                <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-purple-500 to-cyan-500 opacity-30"></div>
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                variants={stagger(0.06)}
+                className="relative z-10 max-w-5xl mx-auto"
+            >
+                <motion.p
+                    variants={fadeUp(0)}
+                    className="text-[13px] tracking-[0.2em] uppercase text-apple-blue mb-6"
+                >
+                    Parcours
+                </motion.p>
 
-                {parcours.map((item, index) => (
-                    <InView key={index} triggerOnce={false}>
-                        {({ inView, ref }) => (
-                            <motion.div
-                                ref={ref}
-                                initial="hidden"
-                                animate={inView ? "visible" : "hidden"}
-                                variants={item.position === "left" ? slideInFromLeft(0.5) : slideInFromRight(0.5)}
-                                className={`relative mb-12 md:mb-16 flex ${
-                                    item.position === "left"
-                                        ? "md:flex-row flex-col"
-                                        : "md:flex-row-reverse flex-col"
-                                } items-center justify-between w-full`}
-                            >
-                                {/* Contenu */}
-                                <div className={`w-full md:w-5/12 ${item.position === "left" ? "md:text-right" : "md:text-left"}`}>
-                                    <div className="bg-[#0300145e] border border-[#7042f88b] rounded-lg p-6 backdrop-blur-sm hover:border-purple-500 transition-all duration-300">
-                                        <div className="text-[24px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 mb-2">
-                                            {item.year}
-                                        </div>
-                                        <h3 className="text-[20px] font-bold text-white mb-2">
-                                            {item.title}
-                                        </h3>
-                                        <p className="text-gray-300 text-[14px]">
-                                            {item.description}
-                                        </p>
-                                    </div>
-                                </div>
+                <motion.h2
+                    variants={fadeUp(0.05)}
+                    className="font-semibold tracking-tight mb-20"
+                    style={{
+                        fontSize: "clamp(2.5rem, 6vw, 4rem)",
+                        lineHeight: 1.08,
+                        letterSpacing: "-0.02em",
+                    }}
+                >
+                    <span className="block">Une trajectoire,</span>
+                    <span className="block title-muted">étape par étape.</span>
+                </motion.h2>
 
-                                {/* Point central */}
-                                <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 border-4 border-[#0f0728] z-10">
-                                    <div className="w-full h-full rounded-full bg-white animate-ping opacity-20"></div>
-                                </div>
-
-                                {/* Espace vide pour l'autre côté */}
-                                <div className="hidden md:block w-5/12"></div>
-                            </motion.div>
-                        )}
-                    </InView>
-                ))}
-            </div>
+                <ol className="relative border-l border-white/10 ml-3 md:ml-5">
+                    {parcours.map((item, i) => (
+                        <motion.li
+                            key={i}
+                            variants={fadeUp(0)}
+                            className="relative pl-8 md:pl-12 pb-12 last:pb-0"
+                        >
+                            <span className="absolute -left-[6px] top-1.5 w-3 h-3 rounded-full bg-apple-blue ring-4 ring-black" />
+                            <p className="text-[12px] tracking-widest uppercase text-apple-gray-400 mb-2">
+                                {item.year}
+                            </p>
+                            <div className="card-dark p-6 md:p-8 max-w-xl">
+                                <h3 className="text-[22px] md:text-[24px] font-semibold text-white tracking-tight">
+                                    {item.title}
+                                </h3>
+                                <p className="mt-2 text-[15px] text-apple-gray-300 leading-relaxed">
+                                    {item.description}
+                                </p>
+                            </div>
+                        </motion.li>
+                    ))}
+                </ol>
+            </motion.div>
         </section>
     );
 };
