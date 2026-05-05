@@ -2,19 +2,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { slideInFromLeft, slideInFromTop } from "@/utils/motion";
-import { InView } from "react-intersection-observer";
-import { IconType } from "react-icons";
-import {
-    FaRocket,
-    FaSearch,
-    FaExclamationTriangle,
-    FaGlobe,
-    FaBullseye,
-} from "react-icons/fa";
+import { fadeUp, stagger } from "@/utils/motion";
 
 interface TimelineStep {
-    Icon: IconType;
     label: string;
     period: string;
     intro: string;
@@ -24,7 +14,6 @@ interface TimelineStep {
 
 const timelineSteps: TimelineStep[] = [
     {
-        Icon: FaRocket,
         label: "Point de départ",
         period: "Année 1 — 2024-2025",
         intro:
@@ -33,7 +22,6 @@ const timelineSteps: TimelineStep[] = [
         note: null,
     },
     {
-        Icon: FaSearch,
         label: "Comprendre la mécanique",
         period: "Début 2025",
         intro:
@@ -47,7 +35,6 @@ const timelineSteps: TimelineStep[] = [
         note: "Je suis passé du statut d'utilisateur passif à celui de développeur capable de comprendre techniquement ce qu'il manipule.",
     },
     {
-        Icon: FaExclamationTriangle,
         label: "La prise de conscience",
         period: "Mi-2025",
         intro:
@@ -56,7 +43,6 @@ const timelineSteps: TimelineStep[] = [
         note: "Avec mes certifications ANSSI/SecNumacadémie et RGPD obtenues en parallèle, j'ai commencé à recouper les sujets : ce n'est plus juste une question technique, c'est une question de conformité légale (RGPD, Cloud Act) et de dépendance stratégique.",
     },
     {
-        Icon: FaGlobe,
         label: "La découverte de l'alternative souveraine",
         period: "Fin 2025 — 2026",
         intro:
@@ -75,145 +61,87 @@ const VeilleTechnologique = () => {
     return (
         <section
             id="veille"
-            className="flex flex-col items-center justify-center min-h-screen w-full py-20 relative"
+            className="relative bg-black text-white py-32 md:py-40 px-6 overflow-hidden"
         >
-            {/* En-tête de section */}
-            <InView triggerOnce={false}>
-                {({ inView, ref }) => (
-                    <motion.div
-                        ref={ref}
-                        initial="hidden"
-                        animate={inView ? "visible" : "hidden"}
-                        variants={slideInFromTop}
-                        className="text-center mb-16 px-5 max-w-3xl"
-                    >
-                        <span className="text-xs font-semibold tracking-widest uppercase text-purple-400 mb-3 block">
-                            Veille Technologique
-                        </span>
-                        <h1 className="text-[32px] md:text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 mb-4 leading-tight">
-                            Intelligence Artificielle &amp; Souveraineté Numérique
-                        </h1>
-                        <p className="text-gray-400 text-[16px]">
-                            Une veille de 2 ans sur l&apos;IA, depuis l&apos;usage quotidien jusqu&apos;aux enjeux de souveraineté européenne.
-                        </p>
-                    </motion.div>
-                )}
-            </InView>
+            <div
+                className="halo-blue"
+                style={{ bottom: "-15%", left: "-10%", width: "50vw", height: "50vw", opacity: 0.25 }}
+            />
 
-            {/* Timeline */}
-            <div className="w-full max-w-3xl px-5 md:px-10">
-                <div className="relative">
-                    {/* Ligne verticale reliant les jalons */}
-                    <div
-                        aria-hidden="true"
-                        className="absolute left-4 top-4 bottom-4 w-0.5 bg-gradient-to-b from-purple-500/50 via-cyan-500/30 to-purple-500/20"
-                    />
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                variants={stagger(0.08)}
+                className="relative z-10 max-w-4xl mx-auto"
+            >
+                <motion.p
+                    variants={fadeUp(0)}
+                    className="text-[13px] tracking-[0.2em] uppercase text-apple-blue mb-6"
+                >
+                    Veille technologique
+                </motion.p>
+                <motion.h2
+                    variants={fadeUp(0.05)}
+                    className="font-semibold tracking-tight mb-6"
+                    style={{
+                        fontSize: "clamp(2.5rem, 6vw, 4rem)",
+                        lineHeight: 1.08,
+                        letterSpacing: "-0.02em",
+                    }}
+                >
+                    <span className="block">Intelligence artificielle</span>
+                    <span className="block title-muted">&amp; souveraineté numérique.</span>
+                </motion.h2>
+                <motion.p
+                    variants={fadeUp(0.1)}
+                    className="text-[18px] text-apple-gray-300 leading-relaxed max-w-2xl mb-20"
+                >
+                    Une veille de 2 ans sur l&apos;IA, depuis l&apos;usage quotidien
+                    jusqu&apos;aux enjeux de souveraineté européenne.
+                </motion.p>
 
-                    {timelineSteps.map((step, index) => {
-                        const StepIcon = step.Icon;
-                        return (
-                            <InView key={index} triggerOnce={false}>
-                                {({ inView, ref }) => (
-                                    <motion.article
-                                        ref={ref}
-                                        initial="hidden"
-                                        animate={inView ? "visible" : "hidden"}
-                                        variants={slideInFromLeft(0.2 + index * 0.1)}
-                                        className="relative flex items-start gap-6 mb-10"
-                                    >
-                                        {/* Jalon */}
-                                        <div
-                                            aria-hidden="true"
-                                            className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center z-10 border-2 border-[#030014]"
-                                        >
-                                            <StepIcon className="text-white w-3.5 h-3.5" />
-                                        </div>
-
-                                        {/* Card */}
-                                        <div className="flex-1 bg-[#0300145e] border border-[#7042f88b] rounded-lg p-5 md:p-6 backdrop-blur-sm hover:border-purple-500 transition-all duration-300">
-                                            <header className="flex flex-wrap items-center gap-2 mb-3">
-                                                <span className="text-[11px] font-semibold tracking-wide uppercase text-purple-300 bg-[#2A0E61] px-3 py-1 rounded-full border border-[#7042f88b]">
-                                                    {step.period}
-                                                </span>
-                                                <h2 className="text-[16px] md:text-[18px] font-bold text-white">
-                                                    {step.label}
-                                                </h2>
-                                            </header>
-                                            <p className="text-gray-300 text-[14px] md:text-[15px] leading-relaxed">
-                                                {step.intro}
-                                            </p>
-                                            {step.items && (
-                                                <ul className="mt-3 space-y-1.5">
-                                                    {step.items.map((item, i) => (
-                                                        <li
-                                                            key={i}
-                                                            className="flex items-start gap-2 text-gray-300 text-[13px] md:text-[14px]"
-                                                        >
-                                                            <span
-                                                                aria-hidden="true"
-                                                                className="text-purple-400 mt-0.5 flex-shrink-0"
-                                                            >
-                                                                ›
-                                                            </span>
-                                                            <span>{item}</span>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            )}
-                                            {step.note && (
-                                                <p className="mt-4 text-[13px] md:text-[14px] text-cyan-400/80 italic border-l-2 border-cyan-500/40 pl-3">
-                                                    {step.note}
-                                                </p>
-                                            )}
-                                        </div>
-                                    </motion.article>
+                <ol className="relative border-l border-white/10 ml-3">
+                    {timelineSteps.map((step, i) => (
+                        <motion.li
+                            key={i}
+                            variants={fadeUp(0)}
+                            className="relative pl-8 md:pl-12 pb-12 last:pb-0"
+                        >
+                            <span className="absolute -left-[6px] top-2 w-3 h-3 rounded-full bg-apple-blue ring-4 ring-black" />
+                            <p className="text-[12px] tracking-widest uppercase text-apple-gray-400 mb-3">
+                                {step.period} · {step.label}
+                            </p>
+                            <div className="card-dark p-7 md:p-8">
+                                <p className="text-[15px] md:text-[16px] text-apple-gray-200 leading-[1.7]">
+                                    {step.intro}
+                                </p>
+                                {step.items && (
+                                    <ul className="mt-5 space-y-2.5">
+                                        {step.items.map((item, j) => (
+                                            <li
+                                                key={j}
+                                                className="flex items-start gap-3 text-[14px] md:text-[15px] text-apple-gray-300 leading-relaxed"
+                                            >
+                                                <span
+                                                    aria-hidden
+                                                    className="text-apple-blue mt-1.5 flex-shrink-0 w-1 h-1 rounded-full bg-apple-blue"
+                                                />
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 )}
-                            </InView>
-                        );
-                    })}
-
-                    {/* Conclusion */}
-                    <InView triggerOnce={false}>
-                        {({ inView, ref }) => (
-                            <motion.article
-                                ref={ref}
-                                initial="hidden"
-                                animate={inView ? "visible" : "hidden"}
-                                variants={slideInFromLeft(0.6)}
-                                className="relative flex items-start gap-6"
-                            >
-                                <div
-                                    aria-hidden="true"
-                                    className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center z-10 border-2 border-[#030014]"
-                                >
-                                    <FaBullseye className="text-white w-3.5 h-3.5" />
-                                </div>
-
-                                <div className="flex-1 bg-[#0300145e] border border-[#7042f88b] rounded-lg p-5 md:p-6 backdrop-blur-sm hover:border-purple-500 transition-all duration-300">
-                                    <header className="flex flex-wrap items-center gap-2 mb-3">
-                                        <span className="text-[11px] font-semibold tracking-wide uppercase text-cyan-300 bg-[#0a1628] px-3 py-1 rounded-full border border-cyan-500/30">
-                                            Aujourd&apos;hui
-                                        </span>
-                                        <h2 className="text-[16px] md:text-[18px] font-bold text-white">
-                                            Ma vision aujourd&apos;hui
-                                        </h2>
-                                    </header>
-                                    <p className="text-gray-300 text-[14px] md:text-[15px] leading-relaxed">
-                                        En deux ans, ma vision a complètement basculé. Je suis passé d&apos;un usage naïf de l&apos;IA à une lecture{" "}
-                                        <span className="text-purple-300 font-medium">technique</span>,{" "}
-                                        <span className="text-purple-300 font-medium">juridique</span> et{" "}
-                                        <span className="text-purple-300 font-medium">stratégique</span>{" "}
-                                        du sujet. Aujourd&apos;hui, je comprends comment fonctionne un réseau de neurones, mais surtout je sais pourquoi le choix d&apos;un modèle n&apos;est jamais neutre : derrière chaque API se cachent des questions de souveraineté, de protection des données et de dépendance technologique.
+                                {step.note && (
+                                    <p className="mt-5 pl-4 border-l-2 border-apple-blue/40 text-[14px] text-apple-gray-300 italic">
+                                        {step.note}
                                     </p>
-                                    <p className="mt-4 text-[13px] md:text-[14px] text-cyan-400/80 italic border-l-2 border-cyan-500/40 pl-3">
-                                        C&apos;est cette grille de lecture que je compte porter dans mon futur parcours en DevSecOps et en IA Engineering.
-                                    </p>
-                                </div>
-                            </motion.article>
-                        )}
-                    </InView>
-                </div>
-            </div>
+                                )}
+                            </div>
+                        </motion.li>
+                    ))}
+                </ol>
+            </motion.div>
         </section>
     );
 };
