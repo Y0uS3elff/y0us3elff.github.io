@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import StarsCanvas from "@/components/main/StarBackground";
 import Navbar from "@/components/main/Navbar";
 import Footer from "@/components/main/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+    subsets: ["latin"],
+    variable: "--font-inter",
+    display: "swap",
+});
 
 export const metadata: Metadata = {
-    title: "Portfolio",
-    description: "My portfolio",
+    title: "Léo Clerc — Portfolio",
+    description: "Portfolio de Léo Clerc, étudiant BTS SIO option SLAM.",
 };
 
 export default function RootLayout({
@@ -18,11 +21,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en">
-            <body
-                className={`${inter.className} bg-[#030014] overflow-y-scroll overflow-x-hidden max-w-[1855px] mx-auto`}
-            >
-                <StarsCanvas />
+        <html lang="fr" className={inter.variable}>
+            <body className="bg-black text-apple-gray-50 antialiased overflow-x-hidden">
                 <Navbar />
                 {children}
                 <Footer />

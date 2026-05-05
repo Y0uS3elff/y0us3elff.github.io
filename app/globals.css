@@ -1,87 +1,164 @@
-@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.cursive {
-    font-family: "Cedarville Cursive", cursive;
+:root {
+    --apple-black: #000000;
+    --apple-surface: #0a0a0a;
+    --apple-card: #161617;
+    --apple-gray-50: #f5f5f7;
+    --apple-gray-100: #e8e8ed;
+    --apple-gray-300: #a1a1a6;
+    --apple-gray-500: #6e6e73;
+    --apple-gray-700: #1d1d1f;
+    --apple-blue: #2997ff;
+    --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
 }
-.Welcome-text {
-    background: linear-gradient(
-            0deg,
-            rgba(255, 255, 255, 0.4),
-            rgba(255, 255, 255, 0.4)
-        ),
-        linear-gradient(90.01deg, #e59cff 0.01%, #ba9cff 50.01%, #9cb2ff 100%);
-    background-blend-mode: normal, screen;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+
+html {
+    scroll-behavior: smooth;
+    background: #000;
 }
-.Welcome-box {
-    isolation: isolate;
-    overflow: hidden;
+
+body {
+    background: #000;
+    color: #f5f5f7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Atmospheric halos (radial gradients + blur, no Three.js) */
+.halo-blue {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 9999px;
+    background: radial-gradient(circle at center, rgba(41, 151, 255, 0.35), rgba(41, 151, 255, 0) 60%);
+    filter: blur(80px);
+}
+.halo-soft {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 9999px;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 60%);
+    filter: blur(60px);
+}
+
+/* Smooth section transitions between dark and light */
+.section-fade-to-light {
+    background: linear-gradient(to bottom, #000 0%, #f5f5f7 100%);
+    height: 120px;
+    width: 100%;
+}
+.section-fade-to-dark {
+    background: linear-gradient(to bottom, #f5f5f7 0%, #000 100%);
+    height: 120px;
+    width: 100%;
+}
+
+/* Apple-style pill buttons */
+.btn-pill {
+    display: inline-flex;
     align-items: center;
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-    border-radius: 32px;
-    box-shadow: inset 0 -7px 11px #a48fff1f;
-    display: flex;
-
-    position: relative;
-    width: -moz-max-content;
-    transition: 0.45s cubic-bezier(0.6, 0.6, 0, 1) box-shadow;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    transition: all 0.4s var(--ease-apple);
+    white-space: nowrap;
+}
+.btn-pill-primary {
+    background: var(--apple-blue);
+    color: #fff;
+}
+.btn-pill-primary:hover {
+    background: #0084ff;
+    transform: translateY(-1px);
+}
+.btn-pill-ghost {
+    color: var(--apple-blue);
+    background: transparent;
+}
+.btn-pill-ghost:hover {
+    color: #6db8ff;
+}
+.btn-pill-outline {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f5f5f7;
+    background: transparent;
+}
+.btn-pill-outline:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+}
+.btn-pill-outline-dark {
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    color: #1d1d1f;
+    background: transparent;
+}
+.btn-pill-outline-dark:hover {
+    border-color: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.04);
 }
 
-.button-primary {
-    background: linear-gradient(
-            180deg,
-            rgba(60, 8, 126, 0) 0%,
-            rgba(60, 8, 126, 0.32) 100%
-        ),
-        rgba(113, 47, 255, 0.12);
-    box-shadow: inset 0 0 12px #bf97ff3d;
+/* Apple cards */
+.card-dark {
+    background: linear-gradient(180deg, #1c1c1e 0%, #131315 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1.75rem;
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset, 0 8px 32px rgba(0, 0, 0, 0.4);
 }
-.button-primary:hover {
-    background: linear-gradient(
-            180deg,
-            rgba(60, 8, 126, 0) 0%,
-            rgba(60, 8, 126, 0.42) 100%
-        ),
-        rgba(113, 47, 255, 0.24);
-    box-shadow: inset 0 0 12px #bf97ff70;
+.card-light {
+    background: #ffffff;
+    border-radius: 1.75rem;
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.6) inset, 0 8px 32px rgba(0, 0, 0, 0.06);
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
+/* Navbar glass */
+.navbar-glass {
+    background: rgba(0, 0, 0, 0.72);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Display titles with muted second-half */
+.title-muted {
+    color: rgba(245, 245, 247, 0.56);
+}
+.title-muted-dark {
+    color: rgba(29, 29, 31, 0.56);
+}
+
+/* Hide scrollbar utility */
 .scrollbar-hidden {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 .scrollbar-hidden::-webkit-scrollbar {
     display: none;
 }
 
-html {
-    scroll-behavior: smooth;
+/* Discreet scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
 }
-
-/* This styles the scrollbar track (the part the thumb slides along) */
 ::-webkit-scrollbar-track {
     background-color: transparent;
 }
-
-/* This styles the scrollbar thumb (the draggable element) */
 ::-webkit-scrollbar-thumb {
-    background-color: #555;
+    background-color: rgba(110, 110, 115, 0.5);
     border-radius: 10px;
 }
-
-/* Changes the thumb color on hover or when being clicked */
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #888;
+    background-color: rgba(110, 110, 115, 0.8);
 }
 
-/* This styles the scrollbar itself (width, height) */
-::-webkit-scrollbar {
-    width: 10px;
+/* Selection */
+::selection {
+    background: rgba(41, 151, 255, 0.4);
+    color: #fff;
 }
