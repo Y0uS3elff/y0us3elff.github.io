@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { fadeUp, stagger } from "@/utils/motion";
+import { fadeUp, stagger, scaleReveal } from "@/utils/motion";
 
 const About = () => {
     return (
@@ -39,7 +39,7 @@ const About = () => {
 
                 <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
                     <motion.div
-                        variants={fadeUp(0.1)}
+                        variants={scaleReveal(0.1)}
                         className="md:col-span-1 flex justify-center md:justify-start"
                     >
                         <div className="relative w-full max-w-[280px] aspect-square rounded-3xl overflow-hidden shadow-card-light bg-white">

@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { fadeUp, stagger } from "@/utils/motion";
+import { fadeUp, stagger, scaleReveal } from "@/utils/motion";
 import ProjectCard from "../sub/ProjectCard";
 import { projects } from "@/constants";
 
@@ -51,19 +51,23 @@ const Projects = () => {
                 </div>
 
                 <motion.div
-                    variants={fadeUp(0.1)}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    variants={stagger(0.12)}
                     className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
                 >
                     {featured.map((project) => (
-                        <ProjectCard
-                            key={project.slug}
-                            slug={project.slug}
-                            src={project.src}
-                            title={project.title}
-                            description={project.description}
-                            technologies={project.technologies}
-                            variant="light"
-                        />
+                        <motion.div key={project.slug} variants={scaleReveal(0)}>
+                            <ProjectCard
+                                slug={project.slug}
+                                src={project.src}
+                                title={project.title}
+                                description={project.description}
+                                technologies={project.technologies}
+                                variant="light"
+                            />
+                        </motion.div>
                     ))}
                 </motion.div>
             </motion.div>

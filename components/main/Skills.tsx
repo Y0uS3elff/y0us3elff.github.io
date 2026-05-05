@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { fadeUp, stagger } from "@/utils/motion";
+import { fadeUp, stagger, scaleReveal } from "@/utils/motion";
 import { Backend_skill, Frontend_skill, libraries, projects } from "@/constants";
 
 type Skill = {
@@ -23,7 +23,8 @@ const SkillTile = ({ skill }: { skill: Skill }) => {
 
     return (
         <motion.div
-            variants={fadeUp(0)}
+            variants={scaleReveal(0)}
+            whileHover={{ y: -3, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } }}
             className="group relative flex flex-col items-center justify-center p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500 ease-apple"
         >
             <div className="h-12 flex items-center justify-center">
@@ -65,12 +66,18 @@ const SkillCategory = ({
     cols: string;
 }) => (
     <motion.div
-        variants={fadeUp(0)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={stagger(0.06)}
         className="card-dark p-7 md:p-9"
     >
-        <p className="text-[12px] tracking-[0.2em] uppercase text-apple-blue mb-6">
+        <motion.p
+            variants={fadeUp(0)}
+            className="text-[12px] tracking-[0.2em] uppercase text-apple-blue mb-6"
+        >
             {label}
-        </p>
+        </motion.p>
         <div className={`grid ${cols} gap-3`}>
             {items.map((s) => (
                 <SkillTile key={s.skill_name} skill={s} />

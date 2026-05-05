@@ -1,29 +1,57 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { fadeUp, stagger, APPLE_EASE } from "@/utils/motion";
 
 const Hero = () => {
+    const ref = useRef<HTMLElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start start", "end start"],
+    });
+
+    const haloY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+    const haloScale = useTransform(scrollYProgress, [0, 1], [1, 1.3]);
+    const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+    const contentOpacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 0.6, 0]);
+
     return (
         <section
+            ref={ref}
             id="home"
             className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black"
         >
-            <div
+            <motion.div
                 className="halo-blue"
-                style={{ top: "-10%", left: "50%", transform: "translateX(-50%)", width: "70vw", height: "70vw", opacity: 0.6 }}
+                style={{
+                    top: "-10%",
+                    left: "50%",
+                    translateX: "-50%",
+                    width: "70vw",
+                    height: "70vw",
+                    opacity: 0.6,
+                    y: haloY,
+                    scale: haloScale,
+                }}
             />
-            <div
+            <motion.div
                 className="halo-soft"
-                style={{ bottom: "-20%", right: "-10%", width: "40vw", height: "40vw" }}
+                style={{
+                    bottom: "-20%",
+                    right: "-10%",
+                    width: "40vw",
+                    height: "40vw",
+                    y: haloY,
+                }}
             />
 
             <motion.div
                 initial="hidden"
                 animate="visible"
                 variants={stagger(0.12, 0.1)}
+                style={{ y: contentY, opacity: contentOpacity }}
                 className="relative z-10 max-w-5xl mx-auto px-6 text-center"
             >
                 <motion.p
@@ -71,9 +99,10 @@ const Hero = () => {
             </motion.div>
 
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.4, duration: 1, ease: APPLE_EASE }}
+                style={{ opacity: contentOpacity }}
                 className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-widest text-apple-gray-500"
             >
                 Faites défiler ↓
