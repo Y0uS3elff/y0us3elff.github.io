@@ -18,7 +18,7 @@ const Projects = () => {
             <motion.div
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: false, amount: 0.15 }}
                 variants={stagger(0.08)}
                 className="max-w-6xl mx-auto"
             >
@@ -53,7 +53,7 @@ const Projects = () => {
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ once: false, amount: 0.2 }}
                     variants={stagger(0.12)}
                     className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
                 >

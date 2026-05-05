@@ -13,7 +13,7 @@ const TableauSynthese = () => {
             <motion.div
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: false, amount: 0.2 }}
                 variants={stagger(0.1)}
                 className="max-w-3xl mx-auto text-center"
             >

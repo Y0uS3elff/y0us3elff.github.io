@@ -69,7 +69,7 @@ const Parcours = () => {
             <motion.div
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: false, amount: 0.15 }}
                 variants={stagger(0.06)}
                 className="relative z-10 max-w-5xl mx-auto"
             >

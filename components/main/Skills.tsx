@@ -68,7 +68,7 @@ const SkillCategory = ({
     <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: false, amount: 0.2 }}
         variants={stagger(0.06)}
         className="card-dark p-7 md:p-9"
     >
@@ -100,7 +100,7 @@ const Skills = () => {
             <motion.div
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: false, amount: 0.15 }}
                 variants={stagger(0.08)}
                 className="relative z-10 max-w-6xl mx-auto"
             >
