@@ -1,51 +1,65 @@
+// Apple ease curve
+export const APPLE_EASE = [0.16, 1, 0.3, 1] as const;
+
+export const fadeUp = (delay: number = 0) => ({
+    hidden: { opacity: 0, y: 24 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { delay, duration: 0.9, ease: APPLE_EASE },
+    },
+});
+
+export const fadeIn = (delay: number = 0) => ({
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { delay, duration: 0.8, ease: APPLE_EASE },
+    },
+});
+
+export const stagger = (staggerChildren: number = 0.08, delayChildren: number = 0) => ({
+    visible: {
+        transition: { staggerChildren, delayChildren },
+    },
+});
+
 export function slideInFromLeft(delay: number) {
     return {
-        hidden: { x: -100, opacity: 0 },
+        hidden: { x: -60, opacity: 0 },
         visible: {
             x: 0,
             opacity: 1,
-            transition: {
-                delay: delay,
-                duration: 0.5,
-            },
+            transition: { delay, duration: 0.9, ease: APPLE_EASE },
         },
     };
 }
 
 export function slideInFromRight(delay: number) {
     return {
-        hidden: { x: 100, opacity: 0 },
+        hidden: { x: 60, opacity: 0 },
         visible: {
             x: 0,
             opacity: 1,
-            transition: {
-                delay: delay,
-                duration: 0.5,
-            },
+            transition: { delay, duration: 0.9, ease: APPLE_EASE },
         },
     };
 }
 
 export const slideInFromTop = {
-    hidden: { y: -100, opacity: 0 },
+    hidden: { y: -40, opacity: 0 },
     visible: {
         y: 0,
         opacity: 1,
-        transition: {
-            delay: 0.5,
-            duration: 0.5,
-        },
+        transition: { delay: 0.2, duration: 0.9, ease: APPLE_EASE },
     },
 };
 
 export const slideInFromBottom = {
-    hidden: { y: 100, opacity: 0 },
+    hidden: { y: 40, opacity: 0 },
     visible: {
         y: 0,
         opacity: 1,
-        transition: {
-            delay: 0.5,
-            duration: 0.5,
-        },
+        transition: { delay: 0.2, duration: 0.9, ease: APPLE_EASE },
     },
 };

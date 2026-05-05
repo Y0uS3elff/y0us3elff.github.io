@@ -1,19 +1,84 @@
+"use client";
+
 import React from "react";
-import HeroContent from "../sub/HeroContent";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { fadeUp, stagger, APPLE_EASE } from "@/utils/motion";
 
 const Hero = () => {
     return (
-        <div className="relative h-full w-full" id="home">
-            <video
-                autoPlay
-                muted
-                loop
-                className="rotate-100 absolute md:top-[-240px] lg:top-[-335px] top-[-400px] left-0 z-[0] w-full h-full object-cover"
+        <section
+            id="home"
+            className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black"
+        >
+            <div
+                className="halo-blue"
+                style={{ top: "-10%", left: "50%", transform: "translateX(-50%)", width: "70vw", height: "70vw", opacity: 0.6 }}
+            />
+            <div
+                className="halo-soft"
+                style={{ bottom: "-20%", right: "-10%", width: "40vw", height: "40vw" }}
+            />
+
+            <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={stagger(0.12, 0.1)}
+                className="relative z-10 max-w-5xl mx-auto px-6 text-center"
             >
-                <source src="/blackhole.webm" type="video/webm" />
-            </video>
-            <HeroContent />
-        </div>
+                <motion.p
+                    variants={fadeUp(0)}
+                    className="text-[13px] tracking-[0.2em] uppercase text-apple-blue mb-6"
+                >
+                    Portfolio · BTS SIO SLAM
+                </motion.p>
+
+                <motion.h1
+                    variants={fadeUp(0.05)}
+                    className="font-semibold tracking-tight"
+                    style={{
+                        fontSize: "clamp(3rem, 8vw, 5rem)",
+                        lineHeight: 1.05,
+                        letterSpacing: "-0.02em",
+                    }}
+                >
+                    <span className="block text-white">Léo Clerc.</span>
+                    <span className="block title-muted">
+                        Développeur en alternance.
+                    </span>
+                </motion.h1>
+
+                <motion.p
+                    variants={fadeUp(0.15)}
+                    className="mt-8 max-w-2xl mx-auto text-[19px] md:text-[21px] leading-relaxed text-apple-gray-300"
+                >
+                    Étudiant en BTS SIO option SLAM, en alternance chez MTB by Creative.
+                    Passionné par le développement et les nouvelles technologies,
+                    notamment l&apos;intelligence artificielle.
+                </motion.p>
+
+                <motion.div
+                    variants={fadeUp(0.25)}
+                    className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+                >
+                    <Link href="/realisations" className="btn-pill btn-pill-primary">
+                        Voir mes réalisations
+                    </Link>
+                    <Link href="#about" className="btn-pill btn-pill-ghost">
+                        En savoir plus →
+                    </Link>
+                </motion.div>
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.4, duration: 1, ease: APPLE_EASE }}
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-widest text-apple-gray-500"
+            >
+                Faites défiler ↓
+            </motion.div>
+        </section>
     );
 };
 
