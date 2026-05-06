@@ -105,6 +105,9 @@ const VeilleTechnologique = () => {
                     {timelineSteps.map((step, i) => (
                         <motion.li
                             key={i}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: false, amount: 0.3 }}
                             variants={fadeUp(0)}
                             className="relative pl-8 md:pl-12 pb-12 last:pb-0"
                         >

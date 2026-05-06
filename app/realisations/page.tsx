@@ -3,7 +3,7 @@
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { fadeUp, stagger } from "@/utils/motion";
+import { fadeUp, stagger, scaleReveal } from "@/utils/motion";
 import ProjectCard from "@/components/sub/ProjectCard";
 import { projects } from "@/constants";
 
@@ -91,15 +91,18 @@ export default function RealisationsPage() {
                             Aucun projet ne correspond à ce filtre.
                         </p>
                     ) : (
-                        <motion.div
+                        <div
                             key={active}
-                            initial="hidden"
-                            animate="visible"
-                            variants={stagger(0.06)}
                             className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
                         >
                             {filtered.map((project) => (
-                                <motion.div key={project.slug} variants={fadeUp(0)}>
+                                <motion.div
+                                    key={project.slug}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: false, amount: 0.3 }}
+                                    variants={scaleReveal(0)}
+                                >
                                     <ProjectCard
                                         slug={project.slug}
                                         src={project.src}
@@ -110,7 +113,7 @@ export default function RealisationsPage() {
                                     />
                                 </motion.div>
                             ))}
-                        </motion.div>
+                        </div>
                     )}
 
                     <div className="mt-20 flex justify-center">

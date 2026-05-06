@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import ImageZoom from "@/components/sub/ImageZoom";
+import Reveal, { RevealStagger } from "@/components/sub/Reveal";
 
 interface Props {
     params: { slug: string };
@@ -19,9 +20,9 @@ export function generateMetadata({ params }: Props) {
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
     return (
-        <p className="text-[13px] tracking-[0.2em] uppercase text-apple-blue mb-4">
+        <Reveal className="text-[13px] tracking-[0.2em] uppercase text-apple-blue mb-4">
             {children}
-        </p>
+        </Reveal>
     );
 }
 
@@ -33,23 +34,29 @@ function SectionTitle({
     light?: boolean;
 }) {
     return (
-        <h2
+        <Reveal
+            delay={0.05}
             className="font-semibold tracking-tight"
-            style={{
+        >
+            <span style={{
                 fontSize: "clamp(2rem, 4.5vw, 3rem)",
                 lineHeight: 1.1,
                 letterSpacing: "-0.015em",
                 color: light ? "#1d1d1f" : "#fff",
-            }}
-        >
-            {children}
-        </h2>
+                display: "block",
+            }}>
+                {children}
+            </span>
+        </Reveal>
     );
 }
 
 export default function ProjectPage({ params }: Props) {
     const project = projects.find((p) => p.slug === params.slug);
-    if (!project) notFound();
+    if (!project) {
+        notFound();
+        return null;
+    }
 
     return (
         <main className="bg-black text-white">
@@ -67,7 +74,7 @@ export default function ProjectPage({ params }: Props) {
                         ← Toutes les réalisations
                     </Link>
 
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <Reveal className="flex flex-wrap gap-2 mb-6">
                         {project.context && (
                             <span className="text-[11px] tracking-wider uppercase px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-apple-gray-200">
                                 {project.context}
@@ -78,23 +85,23 @@ export default function ProjectPage({ params }: Props) {
                                 {project.period}
                             </span>
                         )}
-                    </div>
+                    </Reveal>
 
-                    <h1
+                    <Reveal delay={0.05}
                         className="font-semibold tracking-tight"
-                        style={{
+                    >
+                        <span style={{
                             fontSize: "clamp(2.75rem, 7vw, 5rem)",
                             lineHeight: 1.05,
                             letterSpacing: "-0.02em",
-                        }}
-                    >
-                        {project.title}
-                    </h1>
-                    <p className="mt-6 max-w-2xl text-[19px] text-apple-gray-300 leading-relaxed">
+                            display: "block",
+                        }}>{project.title}</span>
+                    </Reveal>
+                    <Reveal delay={0.1} className="mt-6 max-w-2xl text-[19px] text-apple-gray-300 leading-relaxed">
                         {project.description}
-                    </p>
+                    </Reveal>
 
-                    <div className="mt-10 flex flex-wrap gap-3">
+                    <Reveal delay={0.15} className="mt-10 flex flex-wrap gap-3">
                         {project.githubUrl && (
                             <a
                                 href={project.githubUrl}
@@ -115,11 +122,11 @@ export default function ProjectPage({ params }: Props) {
                                 Voir en ligne →
                             </a>
                         )}
-                    </div>
+                    </Reveal>
                 </div>
 
                 {/* Image hero pleine largeur */}
-                <div className="relative z-10 mt-16 max-w-6xl mx-auto">
+                <Reveal variant="scaleReveal" delay={0.2} amount={0.15} className="relative z-10 mt-16 max-w-6xl mx-auto">
                     <div className="relative w-full aspect-[16/9] rounded-3xl overflow-hidden border border-white/10 shadow-card-dark">
                         <Image
                             src={project.src}
@@ -130,32 +137,36 @@ export default function ProjectPage({ params }: Props) {
                             className="object-cover"
                         />
                     </div>
-                </div>
+                </Reveal>
             </section>
 
             {/* INFO BAR */}
             {(project.organisation || project.team || project.period) && (
                 <section className="px-6 py-12 bg-black border-t border-white/5">
-                    <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <RevealStagger
+                        staggerChildren={0.1}
+                        amount={0.3}
+                        className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6"
+                    >
                         {project.organisation && (
-                            <div>
+                            <Reveal>
                                 <p className="text-[11px] uppercase tracking-widest text-apple-gray-500 mb-1.5">Organisation</p>
                                 <p className="text-[16px] text-white">{project.organisation}</p>
-                            </div>
+                            </Reveal>
                         )}
                         {project.period && (
-                            <div>
+                            <Reveal delay={0.05}>
                                 <p className="text-[11px] uppercase tracking-widest text-apple-gray-500 mb-1.5">Période</p>
                                 <p className="text-[16px] text-white">{project.period}</p>
-                            </div>
+                            </Reveal>
                         )}
                         {project.team && (
-                            <div>
+                            <Reveal delay={0.1}>
                                 <p className="text-[11px] uppercase tracking-widest text-apple-gray-500 mb-1.5">Modalité</p>
                                 <p className="text-[16px] text-white">{project.team}</p>
-                            </div>
+                            </Reveal>
                         )}
-                    </div>
+                    </RevealStagger>
                 </section>
             )}
 
@@ -168,9 +179,9 @@ export default function ProjectPage({ params }: Props) {
                             <span className="block">En quelques mots,</span>
                             <span className="block title-muted-dark">de quoi s&apos;agit-il ?</span>
                         </SectionTitle>
-                        <div className="mt-10 space-y-5 text-[18px] leading-[1.7] text-apple-gray-600 whitespace-pre-line">
+                        <Reveal delay={0.1} className="mt-10 space-y-5 text-[18px] leading-[1.7] text-apple-gray-600 whitespace-pre-line">
                             {project.detailedDescription || project.description}
-                        </div>
+                        </Reveal>
                     </div>
                 </section>
             )}
@@ -183,16 +194,15 @@ export default function ProjectPage({ params }: Props) {
                         <span className="block">Une stack,</span>
                         <span className="block title-muted">pour ce projet.</span>
                     </SectionTitle>
-                    <div className="mt-10 flex flex-wrap gap-2.5">
+                    <RevealStagger staggerChildren={0.04} delayChildren={0.1} amount={0.3} className="mt-10 flex flex-wrap gap-2.5">
                         {project.technologies.map((tech) => (
-                            <span
-                                key={tech}
-                                className="text-[14px] px-4 py-2 rounded-full bg-apple-blue/10 border border-apple-blue/30 text-apple-blue"
-                            >
-                                {tech}
-                            </span>
+                            <Reveal key={tech}>
+                                <span className="text-[14px] px-4 py-2 rounded-full bg-apple-blue/10 border border-apple-blue/30 text-apple-blue inline-block">
+                                    {tech}
+                                </span>
+                            </Reveal>
                         ))}
-                    </div>
+                    </RevealStagger>
                 </div>
             </section>
 
@@ -206,12 +216,12 @@ export default function ProjectPage({ params }: Props) {
                             <span className="block title-muted-dark">les flux et les briques.</span>
                         </SectionTitle>
                         {project.architecture && (
-                            <div className="mt-10 rounded-2xl bg-apple-gray-700 text-apple-gray-50 p-6 md:p-8 font-mono text-[14px] md:text-[15px] leading-relaxed overflow-x-auto">
+                            <Reveal delay={0.1} className="mt-10 rounded-2xl bg-apple-gray-700 text-apple-gray-50 p-6 md:p-8 font-mono text-[14px] md:text-[15px] leading-relaxed overflow-x-auto">
                                 {project.architecture}
-                            </div>
+                            </Reveal>
                         )}
                         {project.architectureImage && (
-                            <div className="mt-8 flex justify-center">
+                            <Reveal variant="scaleReveal" delay={0.2} className="mt-8 flex justify-center">
                                 <div className="rounded-3xl overflow-hidden bg-white shadow-card-light w-full max-w-2xl">
                                     <ImageZoom
                                         src={project.architectureImage}
@@ -221,7 +231,7 @@ export default function ProjectPage({ params }: Props) {
                                         className="w-full h-auto"
                                     />
                                 </div>
-                            </div>
+                            </Reveal>
                         )}
                     </div>
                 </section>
@@ -236,9 +246,9 @@ export default function ProjectPage({ params }: Props) {
                             <span className="block">Ce qui était fourni,</span>
                             <span className="block title-muted">ce qui était attendu.</span>
                         </SectionTitle>
-                        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <RevealStagger staggerChildren={0.15} delayChildren={0.1} amount={0.2} className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
                             {project.resourcesProvided && (
-                                <div className="card-dark p-7 md:p-8">
+                                <Reveal variant="scaleReveal" className="card-dark p-7 md:p-8">
                                     <p className="text-[12px] uppercase tracking-widest text-apple-blue mb-5">
                                         Ressources fournies
                                     </p>
@@ -253,10 +263,10 @@ export default function ProjectPage({ params }: Props) {
                                             </li>
                                         ))}
                                     </ul>
-                                </div>
+                                </Reveal>
                             )}
                             {project.expectedResults && (
-                                <div className="card-dark p-7 md:p-8">
+                                <Reveal variant="scaleReveal" className="card-dark p-7 md:p-8">
                                     <p className="text-[12px] uppercase tracking-widest text-apple-blue mb-5">
                                         Résultats attendus
                                     </p>
@@ -271,9 +281,9 @@ export default function ProjectPage({ params }: Props) {
                                             </li>
                                         ))}
                                     </ul>
-                                </div>
+                                </Reveal>
                             )}
-                        </div>
+                        </RevealStagger>
                     </div>
                 </section>
             )}
@@ -287,17 +297,16 @@ export default function ProjectPage({ params }: Props) {
                             <span className="block">Ce que fait</span>
                             <span className="block title-muted-dark">l&apos;application.</span>
                         </SectionTitle>
-                        <ul className="mt-12 space-y-4">
+                        <RevealStagger staggerChildren={0.06} delayChildren={0.1} amount={0.15} className="mt-12 space-y-4">
                             {project.features.map((feature) => (
-                                <li
-                                    key={feature}
-                                    className="flex items-start gap-4 text-[17px] text-apple-gray-600 leading-relaxed"
-                                >
-                                    <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-apple-blue flex-shrink-0" />
-                                    {feature}
-                                </li>
+                                <Reveal key={feature}>
+                                    <div className="flex items-start gap-4 text-[17px] text-apple-gray-600 leading-relaxed">
+                                        <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-apple-blue flex-shrink-0" />
+                                        {feature}
+                                    </div>
+                                </Reveal>
                             ))}
-                        </ul>
+                        </RevealStagger>
                     </div>
                 </section>
             )}
@@ -311,7 +320,7 @@ export default function ProjectPage({ params }: Props) {
                             <span className="block">Le MCD,</span>
                             <span className="block title-muted">cœur métier de l&apos;application.</span>
                         </SectionTitle>
-                        <div className="mt-12 rounded-3xl overflow-hidden border border-white/10 bg-white">
+                        <Reveal variant="scaleReveal" delay={0.1} amount={0.15} className="mt-12 rounded-3xl overflow-hidden border border-white/10 bg-white">
                             <ImageZoom
                                 src={project.mcdImage}
                                 alt="MCD de la base de données"
@@ -319,7 +328,7 @@ export default function ProjectPage({ params }: Props) {
                                 height={700}
                                 className="w-full h-auto"
                             />
-                        </div>
+                        </Reveal>
                     </div>
                 </section>
             )}
@@ -342,7 +351,7 @@ export default function ProjectPage({ params }: Props) {
                                         i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
                                     }`}
                                 >
-                                    <div>
+                                    <Reveal variant="scaleReveal" amount={0.2}>
                                         {screen.image && (
                                             <div className="rounded-3xl overflow-hidden bg-white shadow-card-light max-w-sm mx-auto md:mx-0">
                                                 <ImageZoom
@@ -354,8 +363,8 @@ export default function ProjectPage({ params }: Props) {
                                                 />
                                             </div>
                                         )}
-                                    </div>
-                                    <div>
+                                    </Reveal>
+                                    <Reveal delay={0.1} amount={0.2}>
                                         <p className="text-[12px] uppercase tracking-widest text-apple-gray-400 mb-3">
                                             Étape {i + 1}
                                         </p>
@@ -372,7 +381,7 @@ export default function ProjectPage({ params }: Props) {
                                         <p className="mt-4 text-[16px] md:text-[17px] text-apple-gray-500 leading-relaxed">
                                             {screen.description}
                                         </p>
-                                    </div>
+                                    </Reveal>
                                 </div>
                             ))}
                         </div>
@@ -389,17 +398,16 @@ export default function ProjectPage({ params }: Props) {
                             <span className="block">Compétences travaillées,</span>
                             <span className="block title-muted">référentiel SLAM.</span>
                         </SectionTitle>
-                        <ul className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <RevealStagger staggerChildren={0.08} delayChildren={0.1} amount={0.2} className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
                             {project.competences.map((c) => (
-                                <li
-                                    key={c}
-                                    className="card-dark p-5 md:p-6 flex items-start gap-3 text-[15px] text-apple-gray-200"
-                                >
-                                    <span className="text-apple-blue text-lg leading-none mt-0.5">✓</span>
-                                    {c}
-                                </li>
+                                <Reveal key={c} variant="scaleReveal">
+                                    <div className="card-dark p-5 md:p-6 flex items-start gap-3 text-[15px] text-apple-gray-200">
+                                        <span className="text-apple-blue text-lg leading-none mt-0.5">✓</span>
+                                        {c}
+                                    </div>
+                                </Reveal>
                             ))}
-                        </ul>
+                        </RevealStagger>
                     </div>
                 </section>
             )}
