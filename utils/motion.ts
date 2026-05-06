@@ -2,11 +2,11 @@
 export const APPLE_EASE = [0.16, 1, 0.3, 1] as const;
 
 export const fadeUp = (delay: number = 0) => ({
-    hidden: { opacity: 0, y: 60 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
         opacity: 1,
         y: 0,
-        transition: { delay, duration: 1.1, ease: APPLE_EASE },
+        transition: { delay, duration: 0.7, ease: APPLE_EASE },
     },
 });
 
@@ -14,27 +14,17 @@ export const fadeIn = (delay: number = 0) => ({
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
-        transition: { delay, duration: 0.8, ease: APPLE_EASE },
+        transition: { delay, duration: 0.6, ease: APPLE_EASE },
     },
 });
 
 export const scaleReveal = (delay: number = 0) => ({
-    hidden: { opacity: 0, y: 80, scale: 0.94 },
+    hidden: { opacity: 0, y: 40, scale: 0.97 },
     visible: {
         opacity: 1,
         y: 0,
         scale: 1,
-        transition: { delay, duration: 1.2, ease: APPLE_EASE },
-    },
-});
-
-export const blurIn = (delay: number = 0) => ({
-    hidden: { opacity: 0, y: 40, filter: "blur(12px)" },
-    visible: {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        transition: { delay, duration: 1.2, ease: APPLE_EASE },
+        transition: { delay, duration: 0.8, ease: APPLE_EASE },
     },
 });
 

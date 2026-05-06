@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import ImageZoom from "@/components/sub/ImageZoom";
-import Reveal, { RevealStagger } from "@/components/sub/Reveal";
+import Reveal, { RevealStagger, RevealItem } from "@/components/sub/Reveal";
 
 interface Props {
     params: { slug: string };
@@ -149,22 +149,22 @@ export default function ProjectPage({ params }: Props) {
                         className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6"
                     >
                         {project.organisation && (
-                            <Reveal>
+                            <RevealItem>
                                 <p className="text-[11px] uppercase tracking-widest text-apple-gray-500 mb-1.5">Organisation</p>
                                 <p className="text-[16px] text-white">{project.organisation}</p>
-                            </Reveal>
+                            </RevealItem>
                         )}
                         {project.period && (
-                            <Reveal delay={0.05}>
+                            <RevealItem>
                                 <p className="text-[11px] uppercase tracking-widest text-apple-gray-500 mb-1.5">Période</p>
                                 <p className="text-[16px] text-white">{project.period}</p>
-                            </Reveal>
+                            </RevealItem>
                         )}
                         {project.team && (
-                            <Reveal delay={0.1}>
+                            <RevealItem>
                                 <p className="text-[11px] uppercase tracking-widest text-apple-gray-500 mb-1.5">Modalité</p>
                                 <p className="text-[16px] text-white">{project.team}</p>
-                            </Reveal>
+                            </RevealItem>
                         )}
                     </RevealStagger>
                 </section>
@@ -196,11 +196,11 @@ export default function ProjectPage({ params }: Props) {
                     </SectionTitle>
                     <RevealStagger staggerChildren={0.04} delayChildren={0.1} amount={0.3} className="mt-10 flex flex-wrap gap-2.5">
                         {project.technologies.map((tech) => (
-                            <Reveal key={tech}>
+                            <RevealItem key={tech}>
                                 <span className="text-[14px] px-4 py-2 rounded-full bg-apple-blue/10 border border-apple-blue/30 text-apple-blue inline-block">
                                     {tech}
                                 </span>
-                            </Reveal>
+                            </RevealItem>
                         ))}
                     </RevealStagger>
                 </div>
@@ -248,7 +248,7 @@ export default function ProjectPage({ params }: Props) {
                         </SectionTitle>
                         <RevealStagger staggerChildren={0.15} delayChildren={0.1} amount={0.2} className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
                             {project.resourcesProvided && (
-                                <Reveal variant="scaleReveal" className="card-dark p-7 md:p-8">
+                                <RevealItem variant="scaleReveal" className="card-dark p-7 md:p-8">
                                     <p className="text-[12px] uppercase tracking-widest text-apple-blue mb-5">
                                         Ressources fournies
                                     </p>
@@ -263,10 +263,10 @@ export default function ProjectPage({ params }: Props) {
                                             </li>
                                         ))}
                                     </ul>
-                                </Reveal>
+                                </RevealItem>
                             )}
                             {project.expectedResults && (
-                                <Reveal variant="scaleReveal" className="card-dark p-7 md:p-8">
+                                <RevealItem variant="scaleReveal" className="card-dark p-7 md:p-8">
                                     <p className="text-[12px] uppercase tracking-widest text-apple-blue mb-5">
                                         Résultats attendus
                                     </p>
@@ -281,7 +281,7 @@ export default function ProjectPage({ params }: Props) {
                                             </li>
                                         ))}
                                     </ul>
-                                </Reveal>
+                                </RevealItem>
                             )}
                         </RevealStagger>
                     </div>
@@ -299,12 +299,12 @@ export default function ProjectPage({ params }: Props) {
                         </SectionTitle>
                         <RevealStagger staggerChildren={0.06} delayChildren={0.1} amount={0.15} className="mt-12 space-y-4">
                             {project.features.map((feature) => (
-                                <Reveal key={feature}>
+                                <RevealItem key={feature}>
                                     <div className="flex items-start gap-4 text-[17px] text-apple-gray-600 leading-relaxed">
                                         <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-apple-blue flex-shrink-0" />
                                         {feature}
                                     </div>
-                                </Reveal>
+                                </RevealItem>
                             ))}
                         </RevealStagger>
                     </div>
@@ -400,12 +400,12 @@ export default function ProjectPage({ params }: Props) {
                         </SectionTitle>
                         <RevealStagger staggerChildren={0.08} delayChildren={0.1} amount={0.2} className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
                             {project.competences.map((c) => (
-                                <Reveal key={c} variant="scaleReveal">
+                                <RevealItem key={c} variant="scaleReveal">
                                     <div className="card-dark p-5 md:p-6 flex items-start gap-3 text-[15px] text-apple-gray-200">
                                         <span className="text-apple-blue text-lg leading-none mt-0.5">✓</span>
                                         {c}
                                     </div>
-                                </Reveal>
+                                </RevealItem>
                             ))}
                         </RevealStagger>
                     </div>

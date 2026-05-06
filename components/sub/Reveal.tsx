@@ -40,6 +40,25 @@ export default function Reveal({
     );
 }
 
+// Lightweight item meant to be used inside RevealStagger.
+// No own IntersectionObserver — inherits visibility from the parent stagger.
+export function RevealItem({
+    children,
+    variant = "fadeUp",
+    className,
+}: {
+    children: React.ReactNode;
+    variant?: Variant;
+    className?: string;
+}) {
+    const v = variantsMap[variant](0);
+    return (
+        <motion.div variants={v} className={className}>
+            {children}
+        </motion.div>
+    );
+}
+
 export function RevealStagger({
     children,
     staggerChildren = 0.08,

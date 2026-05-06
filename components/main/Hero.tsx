@@ -12,10 +12,8 @@ const Hero = () => {
         offset: ["start start", "end start"],
     });
 
-    const haloY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-    const haloScale = useTransform(scrollYProgress, [0, 1], [1, 1.3]);
-    const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-    const contentOpacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 0.6, 0]);
+    const haloY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+    const contentOpacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 0.7, 0]);
 
     return (
         <section
@@ -33,17 +31,15 @@ const Hero = () => {
                     height: "70vw",
                     opacity: 0.6,
                     y: haloY,
-                    scale: haloScale,
                 }}
             />
-            <motion.div
+            <div
                 className="halo-soft"
                 style={{
                     bottom: "-20%",
                     right: "-10%",
                     width: "40vw",
                     height: "40vw",
-                    y: haloY,
                 }}
             />
 
@@ -51,7 +47,7 @@ const Hero = () => {
                 initial="hidden"
                 animate="visible"
                 variants={stagger(0.12, 0.1)}
-                style={{ y: contentY, opacity: contentOpacity }}
+                style={{ opacity: contentOpacity }}
                 className="relative z-10 max-w-5xl mx-auto px-6 text-center"
             >
                 <motion.p
