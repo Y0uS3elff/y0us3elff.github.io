@@ -133,6 +133,11 @@ export interface ProjectScreen {
     image?: string;
 }
 
+export interface EpreuveE5Competence {
+    name: string;
+    activities: string[];
+}
+
 export interface Project {
     slug: string;
     src: string;
@@ -154,6 +159,7 @@ export interface Project {
     resourcesProvided?: string[];
     expectedResults?: string[];
     screens?: ProjectScreen[];
+    epreuveE5?: EpreuveE5Competence[];
 }
 
 export const projects: Project[] = [
@@ -176,17 +182,68 @@ export const projects: Project[] = [
     {
         slug: "projets-java",
         src: "/java.png",
-        title: "Projets Internes Java",
-        description: "Développement de projets internes en Java pour MTB by Creative. Applications métiers et outils de gestion.",
-        detailedDescription: "Développement d'outils internes pour MTB by Creative avec une interface Web via Angular.\n\nProjet réalisé avec des technologies internes de l'entreprise pour des besoins métiers spécifiques.\n\nApplications métiers et outils de gestion pour améliorer les processus internes de l'entreprise.",
-        context: "Projet réalisé en alternance chez MTB by Creative",
-        technologies: ["Java", "Angular", "TypeScript", "Technologies internes"],
+        title: "Projets Internes Java / Angular",
+        description: "Évolutions sur une application interne Java avec front-end Angular en alternance chez MTB by Creative — refactoring TypeScript, tests, documentation et évolutions UI selon les demandes client.",
+        detailedDescription: "Dans le cadre de mon alternance chez MTB by Creative, je contribue depuis ma deuxième année aux évolutions d'une application interne Java avec une interface web Angular, utilisée par l'équipe R&D.\n\nLe projet étant interne et confidentiel, le détail métier ne peut être divulgué. Je peux en revanche décrire mes apports techniques : refactoring de modules en TypeScript, écriture de tests automatisés, mise à jour de la documentation technique, évolutions fonctionnelles et graphiques de l'interface, et adaptations aux retours des utilisateurs et des clients.\n\nCe projet m'a permis de travailler en mode projet sur une stack Java + Angular + TypeScript dans un environnement professionnel exigeant, en partageant la responsabilité du code avec une équipe de développeurs.",
+        context: "Projet en alternance — MTB by Creative",
+        period: "Juillet 2025 – en cours",
+        organisation: "MTB by Creative",
+        team: "En équipe (R&D)",
+        technologies: ["Java", "Angular", "TypeScript", "Tests automatisés", "Outils internes"],
         features: [
-            "Développement d'outils internes métiers",
-            "Interface web Angular connectée à un back-end Java",
-            "Amélioration des processus internes de l'entreprise",
-            "Intégration avec les technologies propriétaires de l'entreprise",
-        ]
+            "Refactoring (recompose) de modules en TypeScript sur l'application existante",
+            "Écriture de tests automatisés pour valider les modules refondus",
+            "Mise à jour et rédaction de documentation technique du projet Angular",
+            "Évolutions fonctionnelles et graphiques de l'interface web",
+            "Modification des règles de génération de visualisations selon les besoins client",
+            "Adaptation de l'affichage et de la représentation des données aux demandes utilisateurs",
+        ],
+        epreuveE5: [
+            {
+                name: "Gérer le patrimoine informatique",
+                activities: [
+                    "Recenser et identifier les ressources numériques",
+                    "Exploiter des référentiels, normes et standards adoptés par le prestataire informatique",
+                    "Mettre en place et vérifier les niveaux d'habilitation associés à un service",
+                    "Vérifier les conditions de la continuité d'un service informatique",
+                    "Gérer des sauvegardes",
+                    "Vérifier le respect des règles d'utilisation des ressources numériques",
+                ],
+            },
+            {
+                name: "Répondre aux incidents et aux demandes d'assistance et d'évolution",
+                activities: [
+                    "Collecter, suivre et orienter des demandes",
+                    "Traiter des demandes concernant les services réseau et système, applicatifs",
+                    "Traiter des demandes concernant les applications",
+                ],
+            },
+            {
+                name: "Travailler en mode projet",
+                activities: [
+                    "Analyser les objectifs et les modalités d'organisation d'un projet",
+                    "Planifier les activités",
+                    "Évaluer les indicateurs de suivi d'un projet et analyser les écarts",
+                ],
+            },
+            {
+                name: "Mettre à disposition des utilisateurs un service informatique",
+                activities: [
+                    "Réaliser les tests d'intégration et d'acceptation d'un service",
+                    "Déployer un service",
+                    "Accompagner les utilisateurs dans la mise en place d'un service",
+                ],
+            },
+            {
+                name: "Organiser son développement professionnel",
+                activities: [
+                    "Mettre en place son environnement d'apprentissage personnel",
+                    "Mettre en œuvre des outils et stratégies de veille informationnelle",
+                    "Gérer son identité professionnelle",
+                    "Développer son projet professionnel",
+                ],
+            },
+        ],
     },
     {
         slug: "android-films",
@@ -251,23 +308,112 @@ export const projects: Project[] = [
                 image: "/rftg-ecran-panier.png",
             },
         ],
+        epreuveE5: [
+            {
+                name: "Travailler en mode projet",
+                activities: [
+                    "Analyser les objectifs et les modalités d'organisation d'un projet",
+                    "Planifier les activités",
+                    "Évaluer les indicateurs de suivi d'un projet et analyser les écarts",
+                ],
+            },
+            {
+                name: "Mettre à disposition des utilisateurs un service informatique",
+                activities: [
+                    "Réaliser les tests d'intégration et d'acceptation d'un service",
+                    "Déployer un service",
+                    "Accompagner les utilisateurs dans la mise en place d'un service",
+                ],
+            },
+        ],
     },
     {
         slug: "laravel-admin-films",
         src: "/laravel_rftg.png",
         title: "Application Laravel Admin Films",
-        description: "Application web Laravel pour l'administration et la gestion du stock de films. Gestion du catalogue, des locations et des statistiques. Projet BTS SIO.",
-        detailedDescription: "Application web Laravel développée dans le cadre du BTS SIO pour l'administration du catalogue de films.\n\nFonctionnalités :\n- Gestion complète du catalogue de films\n- Ajout, modification et suppression de films\n- Gestion des stocks et disponibilités\n- Suivi des locations et retours\n- Statistiques détaillées sur les locations\n- Interface d'administration moderne et ergonomique",
-        context: "Projet académique — BTS SIO",
-        technologies: ["Laravel", "PHP", "MySQL", "Bootstrap"],
+        description: "Application web Laravel (RFTG — Mario) pour l'administration du catalogue de films, des locations et du stock de DVDs depuis le comptoir, via une API REST Spring.",
+        detailedDescription: "Dans le cadre du BTS SIO option SLAM (Épreuve E5), j'ai développé l'application web Laravel Mario pour l'organisation fictive RFTG (Raise From The Graveyard), une vidéothèque de location de DVDs.\n\nL'application s'inscrit dans un système d'information complet : le back-office web (Mario) communique via HTTP avec un webservice REST centralisé (API Spring — Toad), qui accède à une base de données MySQL basée sur le schéma Sakila (Peach). En parallèle, une application mobile Android (Luigi) permet aux clients de louer des films à distance.",
+        context: "BTS SIO SLAM — Épreuve E5",
+        period: "Septembre 2025 – Mai 2026",
+        organisation: "RFTG (Raise From The Graveyard)",
+        team: "Seul et en équipe",
+        githubUrl: "https://github.com/Yourselffff/lcl_mario",
+        liveUrl: "http://sso.rftg.mtb111.com",
+        technologies: ["Laravel", "PHP", "SQL", "MySQL", "API REST", "Spring", "JPA / ORM", "HTML", "CSS", "JavaScript", "Bootstrap", "VS Code", "GitHub"],
+        architecture: "App Web Laravel (Mario) → HTTP Query → Webservice Toad (API Spring) → ORM (JPA) → SQL → BDD MySQL (Schéma Peach / Sakila)",
+        architectureImage: "/rftg-architecture.png",
+        mcdImage: "/rftg-mcd.png",
+        competences: [
+            "Concevoir et développer une solution applicative",
+            "Gérer les données",
+        ],
+        resourcesProvided: [
+            "Description du contexte et de l'existant",
+            "Expression du besoin",
+            "Code existant",
+            "Script de la base de données existante",
+        ],
+        expectedResults: [
+            "Évolution du code de la partie back-office",
+            "Accès sécurisé avec authentification",
+            "Tests unitaires",
+            "Documentation technique",
+            "Tests fonctionnels avec contrôle de compatibilité des navigateurs",
+        ],
         features: [
-            "Gestion complète du catalogue de films",
-            "Ajout, modification et suppression de films",
-            "Gestion des stocks et disponibilités",
-            "Suivi des locations et retours",
+            "Authentification administrateur via Laravel Auth / SSO",
+            "Gestion complète du catalogue : ajout, modification, suppression de films",
+            "Gestion des stocks et des disponibilités des DVDs",
+            "Suivi des locations en cours et des retours",
             "Statistiques détaillées sur les locations",
-            "Interface d'administration moderne et ergonomique",
-        ]
+            "Interface d'administration depuis le comptoir / borne",
+            "Communication avec le webservice REST Spring (Toad)",
+        ],
+        screens: [
+            {
+                title: "Page de connexion",
+                description: "Page d'authentification du back-office Mario. L'administrateur saisit son email et son mot de passe pour accéder à l'espace d'administration. L'authentification est gérée via Laravel Auth en lien avec le SSO de l'organisation, avec une option \"Remember Me\" et un lien de récupération de mot de passe. Sans connexion réussie, l'accès au back-office est impossible.",
+                image: "/rftg-mario-connexion.png",
+            },
+            {
+                title: "Gestion du catalogue de films",
+                description: "Vue principale d'administration listant l'ensemble du catalogue (1001 films). Chaque ligne présente l'ID, le titre, la description, l'année, la durée et la note du film. Trois actions sont disponibles par film : \"Voir\" pour consulter la fiche détaillée, \"Modifier\" pour éditer les informations et \"Supprimer\" pour retirer le film du catalogue. La pagination et un bouton \"Ajouter un film\" complètent l'interface.",
+                image: "/rftg-mario-catalogue.png",
+            },
+            {
+                title: "Ajout d'un nouveau film",
+                description: "Formulaire de création d'un film accessible depuis le catalogue. L'administrateur renseigne les informations principales (titre, année de sortie, langue, description), les détails techniques (durée, coût de remplacement, classification, langue originale) et les caractéristiques spéciales (bonus, commentaires, scènes supprimées, making-of). Les champs obligatoires sont signalés par un astérisque.",
+                image: "/rftg-mario-ajout.png",
+            },
+            {
+                title: "Fiche détail d'un film",
+                description: "Page de consultation détaillée d'un film. Affiche l'ID, l'année de sortie, la langue, la durée, la note, les caractéristiques spéciales, les acteurs, les réalisateurs et la date de dernière mise à jour. Deux actions rapides permettent de \"Modifier\" ou \"Supprimer\" le film, et un bouton \"Retour à la liste\" ramène au catalogue.",
+                image: "/rftg-mario-detail.png",
+            },
+            {
+                title: "Gestion de stock",
+                description: "Page dédiée à la gestion des stocks. Liste chaque film avec son nombre d'exemplaires (DVDs disponibles) et le nombre de magasins concernés. Un bouton \"Voir les DVDs\" permet de consulter le détail des exemplaires d'un film, et un bouton \"Créer un DVD\" en haut à droite permet d'ajouter une nouvelle copie au stock.",
+                image: "/rftg-mario-stock.png",
+            },
+        ],
+        epreuveE5: [
+            {
+                name: "Travailler en mode projet",
+                activities: [
+                    "Analyser les objectifs et les modalités d'organisation d'un projet",
+                    "Planifier les activités",
+                    "Évaluer les indicateurs de suivi d'un projet et analyser les écarts",
+                ],
+            },
+            {
+                name: "Mettre à disposition des utilisateurs un service informatique",
+                activities: [
+                    "Réaliser les tests d'intégration et d'acceptation d'un service",
+                    "Déployer un service",
+                    "Accompagner les utilisateurs dans la mise en place d'un service",
+                ],
+            },
+        ],
     },
     {
         slug: "java-vote-restaurant",

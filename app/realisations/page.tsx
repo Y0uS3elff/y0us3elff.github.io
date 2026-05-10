@@ -8,11 +8,21 @@ import ProjectCard from "@/components/sub/ProjectCard";
 import { projects } from "@/constants";
 
 export default function RealisationsPage() {
-    const allTechs = useMemo(() => {
-        const set = new Set<string>();
-        projects.forEach((p) => p.technologies.forEach((t) => set.add(t)));
-        return ["Tous", ...Array.from(set).sort()];
-    }, []);
+    const allTechs = useMemo(
+        () => [
+            "Tous",
+            "API REST",
+            "Android",
+            "Angular",
+            "CSS",
+            "HTML",
+            "Java",
+            "JavaScript",
+            "Laravel",
+            "SQL",
+        ],
+        []
+    );
 
     const [active, setActive] = useState<string>("Tous");
 

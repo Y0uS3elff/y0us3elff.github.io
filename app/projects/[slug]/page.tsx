@@ -412,6 +412,47 @@ export default function ProjectPage({ params }: Props) {
                 </section>
             )}
 
+            {/* TABLEAU DE SYNTHESE E5 — fond noir */}
+            {project.epreuveE5 && project.epreuveE5.length > 0 && (
+                <section className="bg-black px-6 py-28 md:py-36 border-t border-white/5">
+                    <div className="max-w-5xl mx-auto">
+                        <Eyebrow>Tableau de synthèse — Épreuve E5</Eyebrow>
+                        <SectionTitle>
+                            <span className="block">Compétences cochées,</span>
+                            <span className="block title-muted">au tableau de synthèse.</span>
+                        </SectionTitle>
+                        <Reveal delay={0.1} className="mt-8 max-w-3xl text-[16px] text-apple-gray-400 leading-relaxed">
+                            Ce projet est référencé dans mon tableau de synthèse des
+                            réalisations professionnelles (BTS SIO option SLAM, session
+                            2026) pour les compétences suivantes :
+                        </Reveal>
+                        <RevealStagger staggerChildren={0.1} delayChildren={0.15} amount={0.2} className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {project.epreuveE5.map((comp) => (
+                                <RevealItem key={comp.name} variant="scaleReveal" className="card-dark p-7 md:p-8">
+                                    <div className="flex items-start gap-3 mb-5">
+                                        <span className="text-apple-blue text-lg leading-none mt-0.5">✓</span>
+                                        <p className="text-[17px] font-semibold text-white leading-snug">
+                                            {comp.name}
+                                        </p>
+                                    </div>
+                                    <ul className="space-y-3 pl-7">
+                                        {comp.activities.map((a) => (
+                                            <li
+                                                key={a}
+                                                className="flex items-start gap-3 text-[14px] text-apple-gray-300 leading-relaxed"
+                                            >
+                                                <span className="mt-2 w-1 h-1 rounded-full bg-apple-blue flex-shrink-0" />
+                                                {a}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </RevealItem>
+                            ))}
+                        </RevealStagger>
+                    </div>
+                </section>
+            )}
+
             {/* CTA FINAL — fond clair */}
             <section className="bg-apple-gray-50 text-apple-gray-700 px-6 py-28">
                 <div className="max-w-3xl mx-auto text-center">

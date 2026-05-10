@@ -99,7 +99,7 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.4, duration: 1, ease: APPLE_EASE }}
                 style={{ opacity: contentOpacity }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-widest text-apple-gray-500"
+                className="absolute bottom-10 inset-x-0 text-center text-[11px] uppercase tracking-widest text-apple-gray-500"
             >
                 Faites défiler ↓
             </motion.div>
