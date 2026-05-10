@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeUp, stagger, scaleReveal } from "@/utils/motion";
 
@@ -43,10 +44,12 @@ const About = () => {
                         className="md:col-span-1 flex justify-center md:justify-start"
                     >
                         <div className="relative w-full max-w-[280px] aspect-square rounded-3xl overflow-hidden shadow-card-light bg-white">
-                            <img
+                            <Image
                                 src="/leo.jpg"
                                 alt="Léo Clerc"
-                                className="w-full h-full object-cover"
+                                fill
+                                sizes="(max-width: 768px) 280px, 280px"
+                                className="object-cover"
                             />
                         </div>
                     </motion.div>
